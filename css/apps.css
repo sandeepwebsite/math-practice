@@ -390,6 +390,27 @@ input[type=button]:active {
   position: relative;
   top: 20px;
 }
+
+#myLineChart, #myBarChart2{
+  width: 400px;
+  height: 300px;
+}
+.chartIcon{
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chartIcon .fa{
+  background: var(--bg-box);
+  padding: 5px;
+  border-radius: 100px;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  cursor: pointer;
+}
 table, td, th {
   border: 1px solid;
 }
