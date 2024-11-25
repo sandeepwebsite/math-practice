@@ -391,7 +391,7 @@ input[type=button]:active {
 #table-content{
   width: 50%;
   position: relative;
-  top: 20px;
+  top: 40px;
   margin: auto;
   display: flex;
   flex-direction: column;
