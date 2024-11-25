@@ -130,6 +130,7 @@ header a{
     position: relative;
     visibility: hidden;
     cursor: pointer;
+    top: 18px;
 }
 
 .toggle-btn input[type=checkbox]:after {
