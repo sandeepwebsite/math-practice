@@ -126,8 +126,6 @@ header a{
 
 .toggle-btn{
   align-items: center;
-
-
 }
 .toggle-btn input[type=checkbox] {
     position: relative;
@@ -389,47 +387,18 @@ input[type=button]:active {
                  -3px -3px 6px #24252a;
 }
 #table-content{
-  width: 50%;
   position: relative;
-  top: 40px;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
+  top: 20px;
 }
-.tableDiv{
-  display: flex;
-  width: 100%;
-  gap: 1rem;
-}
-#myLineChart, #myBarChart2{
-  width: 400px;
-  height: 300px;
-  flex: 1;
-}
-.chartIcon{
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.chartIcon .fa{
-  background: var(--bg-box);
-  padding: 5px;
-  border-radius: 100px;
-  width: 40px;
-  height: 40px;
-  text-align: center;
-  cursor: pointer;
-}
-td, th {
+table, td, th {
   border: 1px solid;
 }
 
 table {
-  width: 100%;
+  width: 50%;
   border-collapse: collapse;
   position: relative;
+  top: 50px;
   padding: 10px;
   margin: auto;
   text-align: center;
@@ -540,20 +509,7 @@ footer{
 @media (min-width: 290px) and (max-width: 640px){
   header .logo span{
     display: none;
-  }
-  #table-content{
-    width: 100%;
-    padding: 10px;
-  }
-  .tableDiv{
-    display: flex;
-    flex-direction: column;
-    margin: auto;
-  }
-  /*#myLineChart, #myBarChart2{
-    width: 100%;
-    padding: 5px;
-  }*/ 
+  } 
   .links{
     display: none;
   }
@@ -637,9 +593,9 @@ footer{
     font-size: 24px;
 /*    height: 36px;*/
   }
-  /*table{
+  table{
     width: 90%;
-  }*/
+  }
   header .logo{
     width: 150px;
   }
