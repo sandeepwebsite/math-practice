@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alphabet Place Value Quiz</title>
+</head>
+<style>
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    border-radius: 10px;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+#quiz-container {
+    margin-bottom: 20px;
+}
+
+#question {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+input {
+    padding: 10px;
+    font-size: 1em;
+    margin-bottom: 10px;
+    width: calc(100% - 24px);
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    border: none;
+    background-color: #28a745;
+    color: white;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+#feedback {
+    font-size: 1.2em;
+    margin-top: 10px;
+}
+
+
+</style>
+<body>
+    <div class="container">
+        <h1>Alphabet Place Value Quiz</h1>
+        <div id="quiz-container">
+            <p id="question"></p>
+            <input type="number" id="answer" placeholder="Enter place value">
+            <button id="submit" onclick="checkAnswer()">Submit</button>
+            <p id="feedback"></p>
+        </div>
+        <!-- <button onclick="nextQuestion()">Next Question</button> -->
+    </div>
+    <script>
+
+const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+let currentLetter = '';
+let score = 0;
+
+function getRandomLetter() {
+    const randomIndex = Math.floor(Math.random() * alphabet.length);
+    return alphabet[randomIndex];
+}
+
+function nextQuestion() {
+    currentLetter = getRandomLetter();
+    document.getElementById('question').textContent = `What is the place value of '${currentLetter}' in the alphabet?`;
+    document.getElementById('answer').value = '';
+    document.getElementById('feedback').textContent = '';
+}
+
+function checkAnswer() {
+    const answer = parseInt(document.getElementById('answer').value);
+    const placeValue = alphabet.indexOf(currentLetter) + 1;
+    
+    if (answer === placeValue) {
+        score++;
+        document.getElementById('feedback').textContent = `Correct! Your score: ${score}`;
+        document.getElementById('feedback').style.color = 'green';
+        setTimeout(nextQuestion, 1000);
+    } else {
+        document.getElementById('feedback').textContent = `Incorrect! The correct answer is ${placeValue}. Your score: ${score}`;
+        document.getElementById('feedback').style.color = 'red';
+        // nextQuestion();
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+            nextQuestion();
+            document.getElementById('submit').addEventListener('click', checkAnswer);
+            document.getElementById('answer').addEventListener('keydown', (event) => {
+                if (event.key === 'Enter') {
+                    checkAnswer();
+                }
+            });
+        });
+
+
+    </script>
+</body>
+</html>

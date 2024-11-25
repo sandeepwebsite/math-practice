@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplication 2x1 Quiz</title>
+    <link rel="stylesheet" href="css/apps.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" type="image/x-icon" href="image/favicon-2.png">
+    <style>
+        .quiz-container {
+            text-align: center;
+        }
+        .quiz-container h1 {
+            margin-bottom: 20px;
+        }
+        .quiz-container p {
+            margin: 20px 0;
+        }
+        .quiz-container input {
+            padding: 10px;
+            font-size: 16px;
+            width: 100px;
+            margin-bottom: 20px;
+        }
+        .quiz-container button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .quiz-container .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <header>
+      <div class="logo"> 
+        <img src="image/favicon-2.png" />
+        <div class="logo-text">
+          <h3>Dear</h3>
+          <h3>Aspirant</h3>
+        </div>
+      </div>
+
+      <div class="toggle-btn">
+          <input type="checkbox" id="checkbox">
+      </div>
+      <div class="links">
+        <a href="index.html"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+        <a href="#tags">More+</a>
+        <a href="index.html">About</a>
+      </div>
+    </header>
+
+    <div class="background">
+      <div class="box">
+    <div class="quiz-container">
+        <h1>Multiplication 2x1 Quiz</h1>
+        <p id="questionNumber">Question: 1</p>
+        <p id="question"></p>
+        <input type="number" id="answer" placeholder="Your answer" disabled>
+        <div>
+            <button id="startButton" onclick="startQuiz()">Start</button>
+            <button id="resetButton" onclick="resetQuiz()" disabled>Reset</button>
+            <button id="submitButton" onclick="checkAnswer()" disabled>Submit</button>
+        </div>
+        <p class="result" id="result"></p>
+        <p>Time: <span id="time">00:00:00</span></p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Highest Time</th>
+                    <th>Lowest Time</th>
+                    <th>Last 5 Times</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="highestTime2">00:00:00</td>
+                    <td id="lowestTime2">00:00:00</td>
+                    <td id="last5Times2">-</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div></div>
+
+<br><br><br>
+    <h2 class="tag-heading"><span>Start Practice</span></h2>
+    <div class="all-math">
+      <li><a href="multiplication_2x2.html"><span>1</span>Multiplication (2 x 2)</a></li>
+      <li><a href="multiplication_3x2.html"><span>2</span>Multiplication (3 x 2)</a></li>
+      <li><a href="multiplication_3x3.html"><span>3</span>Multiplication (3 x 3)</a></li>
+
+      <li><a href="subtraction_2x2.html"><span>4</span>Subtraction (2 - 2)</a></li>
+      <li><a href="subtraction_3x3.html"><span>5</span>Subtraction (3 - 3)</a></li>
+      <li><a href="subtraction_3x2.html"><span>6</span>Subtraction (3 - 2)</a></li>
+      <li><a href="substraction_3x2x3.html"><span>7</span>Subtraction (3 - 2 - 3)</a></li>
+
+      <li class="active"><a href="addition_2x2.html"><span>8</span>Addition (2 x 2)</a></li>
+      <li><a href="addition_3x3.html"><span>9</span>Addition (3 + 3)</a></li>
+      <li><a href="addition_3x2.html"><span>10</span>Addition (3 + 2)</a></li>
+      <li><a href="addition_3x2x3.html"><span>11</span>Addition (3 + 2 + 3)</a></li>
+
+      <li><a href="division.html"><span>12</span>Division</a></li>
+
+
+      <li><a href="squre_2_to_30.html"><span>13</span>Squre (2 to 30)</a></li>
+      <li><a href="squre_31_plus.html"><span>14</span>Squre (31 to 151)</a></li>
+
+      <li><a href="cube_2_to_20.html"><span>15</span>Cube (2 to 20)</a></li>
+
+      <li><a href="squre_root.html"><span>16</span>Squre Root</a></li>
+      <li><a href="cube_root.html"><span>17</span>Cube Root</a></li>
+
+      <li><a href="table_2_to_30.html"><span>18</span>Table (Upto to 30)</a></li>
+      <li><a href="table_11_to_100.html"><span>19</span>Table (11 to 100)</a></li>
+      <li><a href="percentage.html"><span>20</span>Percentage to Fraction</a></li>
+    </div>
+
+<br>
+
+
+    <footer>
+      <div class="policy">
+        <li><a href="">Privacy Policy</a> </li>
+        <li><a href="">Sitemap</a> </li>
+        <li><a href="">Disclaimer</a> </li>
+      </div>
+      <div class="copyrights">Copyright © 2023 || D & M by Sandeep</div>
+    </footer>
+
+    <div class="blank"></div>
+    <div class="links-2">
+      <a href="index.html">Home</a>
+      <a href="#ul" style="">More+</a>
+      <a href="#" style="">Share</a>
+      <a href="index.html">About</a>
+    </div>
+
+    <script>
+
+// Dark Mode Code
+  const toggle_btn = document.querySelector('#checkbox')
+        toggle_btn.addEventListener('change', () =>{
+    if(toggle_btn.checked){
+        document.body.classList.add('dark-mode')
+      }
+      else{
+        document.body.classList.remove('dark-mode')
+      }
+    })
+
+        let correctCount = 0;
+        let totalQuestions = 0;
+        let highestTime2 = localStorage.getItem('highestTime2') ? parseFloat(localStorage.getItem('highestTime2')) : 0;
+        let lowestTime2 = localStorage.getItem('lowestTime2') ? parseFloat(localStorage.getItem('lowestTime2')) : Infinity;
+        let last5Times2 = localStorage.getItem('last5Times2') ? JSON.parse(localStorage.getItem('last5Times2')) : [];
+        let startTime;
+        let timerInterval;
+        let question;
+
+        document.getElementById('highestTime2').textContent = formatTime(highestTime2);
+        document.getElementById('lowestTime2').textContent = lowestTime2 === Infinity ? '00:00:00' : formatTime(lowestTime2);
+        document.getElementById('last5Times2').textContent = last5Times2.length ? last5Times2.map(formatTime).join(', ') : '-';
+
+        function startTimer() {
+            startTime = Date.now();
+            timerInterval = setInterval(updateTime, 10);
+        }
+
+        function updateTime() {
+            const elapsedTime = Date.now() - startTime;
+            document.getElementById('time').textContent = formatTime(elapsedTime);
+        }
+
+        function formatTime(time) {
+            const minutes = Math.floor(time / 60000);
+            const seconds = Math.floor((time % 60000) / 1000);
+            const milliseconds = Math.floor((time % 1000) / 10);
+            return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}.${milliseconds.toString().padStart(2, '0')}`;
+        }
+
+        function generateQuestion() {
+            let num1 = Math.floor(Math.random() * 100) + 1;
+            let num2 = Math.floor(Math.random() * 100) + 1;
+
+            document.getElementById('question').textContent = `What is ${num1} * ${num2}?`;
+            document.getElementById('questionNumber').textContent = `Question: ${totalQuestions + 1}`;
+            return { num1, num2 };
+        }
+
+        function checkAnswer() {
+            const { num1, num2 } = question;
+            const correctAnswer = num1 * num2;
+            const userAnswer = document.getElementById('answer').value;
+
+            if (userAnswer == correctAnswer) {
+                correctCount++;
+                document.getElementById('result').textContent = "Correct!";
+                document.getElementById('result').style.color = "green";
+
+                totalQuestions++;
+                if (totalQuestions < 10) {
+                    question = generateQuestion();
+                } else {
+                    endQuiz();
+                }
+            } else {
+                document.getElementById('result').textContent = `Incorrect. The correct answer is ${correctAnswer}`;
+                document.getElementById('result').style.color = "red";
+            }
+
+            document.getElementById('answer').value = '';
+        }
+
+        function startQuiz() {
+            correctCount = 0;
+            totalQuestions = 0;
+            document.getElementById('result').textContent = '';
+            document.getElementById('startButton').disabled = true;
+            document.getElementById('resetButton').disabled = false;
+            document.getElementById('submitButton').disabled = false;
+            document.getElementById('answer').disabled = false;
+            startTimer();
+            question = generateQuestion();
+        }
+
+        function resetQuiz() {
+            clearInterval(timerInterval);
+            document.getElementById('time').textContent = '00:00:00';
+            document.getElementById('highestTime2').textContent = formatTime(highestTime2);
+            document.getElementById('lowestTime2').textContent = lowestTime2 === Infinity ? '00:00:00' : formatTime(lowestTime2);
+            document.getElementById('last5Times2').textContent = last5Times2.length ? last5Times2.map(formatTime).join(', ') : '-';
+            document.getElementById('questionNumber').textContent = 'Question: 1';
+            document.getElementById('question').textContent = '';
+            document.getElementById('result').textContent = '';
+            document.getElementById('answer').value = '';
+            document.getElementById('answer').disabled = true;
+            document.getElementById('startButton').disabled = false;
+            document.getElementById('resetButton').disabled = true;
+            document.getElementById('submitButton').disabled = true;
+        }
+
+        function endQuiz() {
+            clearInterval(timerInterval);
+            const completionTime = Date.now() - startTime;
+
+            last5Times2.push(completionTime);
+            if (last5Times2.length > 5) {
+                last5Times2.shift();
+            }
+            localStorage.setItem('last5Times2', JSON.stringify(last5Times2));
+
+            if (completionTime > highestTime2) {
+                highestTime2 = completionTime;
+                localStorage.setItem('highestTime2', highestTime2);
+            }
+            if (completionTime < lowestTime2) {
+                lowestTime2 = completionTime;
+                localStorage.setItem('lowestTime2', lowestTime2);
+            }
+
+            document.getElementById('highestTime2').textContent = formatTime(highestTime2);
+            document.getElementById('lowestTime2').textContent = formatTime(lowestTime2);
+            document.getElementById('last5Times2').textContent = last5Times2.map(formatTime).join(', ');
+
+            alert(`Quiz Over! You answered ${correctCount} questions correctly in ${formatTime(completionTime)}.`);
+            resetQuiz();
+        }
+    </script>
+</body>
+</html>

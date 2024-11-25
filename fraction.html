@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/percentage.css">
+    <title>Fraction to Decimal</title>
+    <style>
+        .quiz-container {
+            text-align: center;
+        }
+        .quiz-container input {
+            padding: 10px;
+            font-size: 16px;
+            width: 150px;
+        }
+        .quiz-container button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .quiz-container .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: var(--bg-white);
+        }
+    </style>
+</head>
+<body>
+  <header>
+      <div class="logo"> 
+        <img src="image/favicon-2.png" />
+        <div class="logo-text">
+          <h3>Dear</h3>
+          <h3>Aspirant</h3>
+        </div>
+      </div>
+
+      <div class="toggle-btn">
+          <input type="checkbox" id="checkbox">
+      </div>
+      <div class="links">
+        <a href="index.html"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+        <a href="#tags">More+</a>
+        <a href="index.html">About</a>
+      </div>
+    </header>
+
+
+    <div class="background">
+      <div class="box">
+    <div class="quiz-container">
+        <h1>Fraction to Decimal</h1>
+        <p id="questionNumber">Question: 1</p>
+        <p id="question"></p>
+        <input type="number" id="answer" placeholder="Your answer" disabled>
+        <div>
+            <button id="startButton" onclick="startQuiz()">Start</button>
+            <button id="resetButton" onclick="resetQuiz()" disabled>Reset</button>
+            <button id="submitButton" onclick="checkAnswer()" disabled>Submit</button>
+        </div>
+        <p>Note: <mark>Take up to two decimal numbers</mark></p>
+        <p class="result" id="result"></p>
+        <p>Time: <span id="time">0:00.000</span></p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Highest Time</th>
+                    <th>Lowest Time</th>
+                    <th>Last 5 Times</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="highestTime">0:00.000</td>
+                    <td id="lowestTime">0:00.000</td>
+                    <td id="last5Times">-</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div></div>
+
+
+    <br><br><br>
+    <h2 class="tag-heading"><span>Start Practice</span></h2>
+    <div class="all-math">
+      <li><a href="multiplication_2x2.html"><span>1</span>Multiplication (2 x 2)</a></li>
+      <li><a href="multiplication_3x2.html"><span>2</span>Multiplication (3 x 2)</a></li>
+      <li><a href="multiplication_3x3.html"><span>3</span>Multiplication (3 x 3)</a></li>
+
+      <li><a href="subtraction_2x2.html"><span>4</span>Subtraction (2 - 2)</a></li>
+      <li><a href="subtraction_3x3.html"><span>5</span>Subtraction (3 - 3)</a></li>
+      <li><a href="subtraction_3x2.html"><span>6</span>Subtraction (3 - 2)</a></li>
+      <li><a href="subtraction_3x2x3.html"><span>7</span>Subtraction (3 - 2 - 3)</a></li>
+
+      <li><a href="addition_2x2.html"><span>8</span>Addition (2 x 2)</a></li>
+      <li><a href="addition_3x3.html"><span>9</span>Addition (3 + 3)</a></li>
+      <li><a href="addition_3x2.html"><span>10</span>Addition (3 + 2)</a></li>
+      <li><a href="addition_3x2x3.html"><span>11</span>Addition (3 + 2 + 3)</a></li>
+
+      <li><a href="division.html"><span>12</span>Division</a></li>
+
+      <li><a href="squre_2_to_30.html"><span>13</span>Square (2 to 30)</a></li>
+      <li><a href="squre_31_plus.html"><span>14</span>Square (31 to 151)</a></li>
+
+      <li><a href="cube_2_to_20.html"><span>15</span>Cube (2 to 20)</a></li>
+
+      <li><a href="squre_root.html"><span>16</span>Square Root</a></li>
+      <li><a href="cube_root.html"><span>17</span>Cube Root</a></li>
+
+      <li><a href="table_2_to_30.html"><span>18</span>Table (Upto to 30)</a></li>
+      <li><a href="table_11_to_100.html"><span>19</span>Table (11 to 100)</a></li>
+      <li><a href="percentage.html"><span>20</span>Percentage to Fraction</a></li>
+    </div>
+
+    <br>
+
+    <footer>
+      <div class="policy">
+        <li><a href="">Privacy Policy</a> </li>
+        <li><a href="">Sitemap</a> </li>
+        <li><a href="">Disclaimer</a> </li>
+      </div>
+      <div class="copyrights">Copyright © 2023 || D & M by Sandeep</div>
+    </footer>
+
+    <div class="blank"></div>
+    <div class="links-2">
+      <a href="index.html">Home</a>
+      <a href="#ul" style="">More+</a>
+      <a href="#" style="">Share</a>
+      <a href="index.html">About</a>
+    </div>
+
+    <!-- javascript code start here -->
+
+<script>
+    // Dark Mode Code
+    const toggle_btn = document.querySelector('#checkbox');
+    toggle_btn.addEventListener('change', () => {
+        if (toggle_btn.checked) {
+            document.body.classList.add('dark-mode');
+        } else {
+            document.body.classList.remove('dark-mode');
+        }
+    });
+
+    let correctCount = 0;
+    let totalQuestions = 0;
+    let highestTime = localStorage.getItem('highestTime') ? parseFloat(localStorage.getItem('highestTime')) : 0;
+    let lowestTime = localStorage.getItem('lowestTime') ? parseFloat(localStorage.getItem('lowestTime')) : Infinity;
+    let last5Times = localStorage.getItem('last5Times') ? JSON.parse(localStorage.getItem('last5Times')) : [];
+    let startTime;
+    let timerInterval;
+    let question;
+
+    document.getElementById('highestTime').textContent = formatTime(highestTime);
+    document.getElementById('lowestTime').textContent = lowestTime === Infinity ? '0:00.00' : formatTime(lowestTime);
+    document.getElementById('last5Times').textContent = last5Times.length ? last5Times.map(formatTime).join(', ') : '-';
+
+    function startTimer() {
+        startTime = Date.now();
+        timerInterval = setInterval(updateTime, 10);
+    }
+
+    function updateTime() {
+        const elapsedTime = Date.now() - startTime;
+        document.getElementById('time').textContent = formatTime(elapsedTime);
+    }
+
+    function formatTime(time) {
+        const minutes = Math.floor(time / 60000);
+        const seconds = Math.floor((time % 60000) / 1000);
+        const milliseconds = Math.floor((time % 1000) / 10);
+        return `${minutes}:${seconds.toString().padStart(2, '0')}.${milliseconds.toString().padStart(2, '0')}`;
+    }
+
+    function generateQuestion() {
+        let num1, num2;
+        do {
+            num1 = Math.floor(Math.random() * 1000) + 1;
+            num2 = Math.floor(Math.random() * 1000) + 1;
+        } while (num1 >= num2);
+
+        document.getElementById('question').textContent = `What is ${num1} / ${num2} (rounded to two decimal places)?`;
+        document.getElementById('questionNumber').textContent = `Question: ${totalQuestions + 1}`;
+        return { num1, num2 };
+    }
+
+    function checkAnswer() {
+        const { num1, num2 } = question;
+        const correctAnswer = (num1 / num2).toFixed(2);
+        const userAnswer = document.getElementById('answer').value;
+
+        if (userAnswer === correctAnswer) {
+            correctCount++;
+            document.getElementById('result').textContent = "Correct!";
+            document.getElementById('result').style.color = "green";
+
+            totalQuestions++;
+            if (totalQuestions < 10) {
+                question = generateQuestion();
+            } else {
+                endQuiz();
+            }
+        } else {
+            document.getElementById('result').textContent = `Incorrect. Try Again`;
+            document.getElementById('result').style.color = "red";
+        }
+
+        document.getElementById('answer').value = '';
+    }
+
+    function endQuiz() {
+        clearInterval(timerInterval);
+        const completionTime = Date.now() - startTime;
+
+        last5Times.push(completionTime);
+        if (last5Times.length > 5) {
+            last5Times.shift();
+        }
+        localStorage.setItem('last5Times', JSON.stringify(last5Times));
+
+        if (completionTime > highestTime) {
+            highestTime = completionTime;
+            localStorage.setItem('highestTime', highestTime);
+        }
+        if (completionTime < lowestTime) {
+            lowestTime = completionTime;
+            localStorage.setItem('lowestTime', lowestTime);
+        }
+
+        document.getElementById('highestTime').textContent = formatTime(highestTime);
+        document.getElementById('lowestTime').textContent = formatTime(lowestTime);
+        document.getElementById('last5Times').textContent = last5Times.map(formatTime).join(', ');
+
+        alert(`Quiz Over! You answered ${correctCount} questions correctly in ${formatTime(completionTime)}.`);
+        correctCount = 0;
+        totalQuestions = 0;
+        document.getElementById('result').textContent = '';
+        resetQuiz();
+    }
+
+    function startQuiz() {
+        document.getElementById('startButton').disabled = true;
+        document.getElementById('resetButton').disabled = false;
+        document.getElementById('submitButton').disabled = false;
+        document.getElementById('answer').disabled = false;
+        correctCount = 0;
+        totalQuestions = 0;
+        startTimer();
+        question = generateQuestion();
+        document.getElementById('result').textContent = '';
+        document.getElementById('answer').focus();
+    }
+
+    function resetQuiz() {
+        clearInterval(timerInterval);
+        document.getElementById('time').textContent = '0:00.00';
+        document.getElementById('question').textContent = '';
+        document.getElementById('questionNumber').textContent = 'Question: 1';
+        document.getElementById('result').textContent = '';
+        document.getElementById('answer').value = '';
+        document.getElementById('answer').disabled = true;
+        document.getElementById('submitButton').disabled = true;
+        document.getElementById('startButton').disabled = false;
+        document.getElementById('resetButton').disabled = true;
+    }
+
+    document.getElementById('answer').addEventListener('keyup', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            checkAnswer();
+        }
+    });
+</script>
+
+</body>
+</html>

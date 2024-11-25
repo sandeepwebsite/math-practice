@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jumble Words Quiz Game</title>
+</head>
+<style>
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+.container {
+    text-align: center;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#game {
+    margin-bottom: 20px;
+}
+
+#jumbleWord {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+#userInput {
+    padding: 10px;
+    font-size: 18px;
+    width: 200px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 18px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+#resultMessage {
+    font-size: 18px;
+    margin-top: 10px;
+    color: #d9534f;
+}
+
+#nextBtn {
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+
+</style>
+<body>
+    <div class="container">
+        <h1>Jumble Words Quiz Game</h1>
+        <div id="game">
+            <p id="jumbleWord">Loading...</p>
+            <input type="text" id="userInput" placeholder="Type your guess here">
+            <button id="submitBtn">Submit</button>
+            <p id="resultMessage"></p>
+        </div>
+        <button id="nextBtn">Next Word</button>
+    </div>
+    <script>
+
+const words = ["javascript", "developer", "jumble", "programming", "quiz", "function"];
+let currentWord = "";
+let jumbledWord = "";
+
+document.addEventListener("DOMContentLoaded", () => {
+    newWord();
+
+    document.getElementById("submitBtn").addEventListener("click", checkAnswer);
+    document.getElementById("nextBtn").addEventListener("click", newWord);
+});
+
+function newWord() {
+    document.getElementById("resultMessage").textContent = "";
+    document.getElementById("userInput").value = "";
+
+    currentWord = words[Math.floor(Math.random() * words.length)];
+    jumbledWord = jumble(currentWord);
+    document.getElementById("jumbleWord").textContent = jumbledWord;
+}
+
+function jumble(word) {
+    const arr = word.split("");
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr.join("");
+}
+
+function checkAnswer() {
+    const userInput = document.getElementById("userInput").value.toLowerCase();
+    if (userInput === currentWord) {
+        document.getElementById("resultMessage").textContent = "Correct! Well done.";
+        document.getElementById("resultMessage").style.color = "#5cb85c";
+    } else {
+        document.getElementById("resultMessage").textContent = "Wrong! Try again.";
+        document.getElementById("resultMessage").style.color = "#d9534f";
+    }
+}
+
+
+    </script>
+</body>
+</html>

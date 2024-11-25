@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Squre 11 to 30</title>
+    <link rel="stylesheet" href="css/apps.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" type="image/x-icon" href="image/favicon-2.png">
+    <script src="js/squre_2_to_30.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <div class="logo"> 
+        <img src="image/favicon-2.png" />
+        <div class="logo-text">
+          <h3>Dear</h3>
+          <h3>Aspirant</h3>
+        </div>
+      </div>
+
+      <div class="toggle-btn">
+          <input type="checkbox" id="checkbox">
+      </div>
+      <div class="links">
+        <a href="index.html"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+        <a href="#tags">More+</a>
+        <a href="index.html">About</a>
+      </div>
+    </header>
+
+
+    <div class="background">
+      <div class="box">
+        <p style="font-size: 22px; font-weight: 500;">Squre 2 to 30</p>
+        <p style="text-align: center;">No of Questions: 10 <br> Difficulty Level: Eassy</p>
+        <h3 id="timer-text">00 : 00 : 00</h3>
+        <div id="q-box">
+          <span class="q-span">Q. <span id="root"></span></span>
+
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <msup>
+              <mn><span id="question"></span></mn>
+              <mrow>
+                <mn style="position: relative; top: 10px; left: -5px; font-weight: 500; font-size: 18px;">2</mn>
+              </mrow>
+            </msup>
+          </math>
+          <span> = ?</span>
+        </div>
+
+
+        
+<form name ="form" id="questionForm" onsubmit="checkAnswer(event)">
+          <input required id="answerInput" name="answer" type="number" placeholder="Answer"/>
+
+          <p id="demo"></p>
+          <div style="text-align: center;color: red;"><span id="countdown"></span> </div>
+
+      
+          <button id="primary-btn" type="submit" onclick="return increment()">Submit</button>
+          
+          <div class="action-btn">
+            <input type="button" value="Start" id="counter-btn" onclick="myFunction()">
+            <input type="button" value = "Restart" onclick="history.go(0)" />
+          </div>
+
+        </form>
+      </div>
+    </div>
+
+
+    <div id="table-content">
+      <table>
+        <tr>
+          <th>Last 5 Score <i class="fa fa-trash-o" onclick= "deleteItems()" style="font-size:20px;color:red; cursor: pointer;" title="Clear Table"></i></th>
+            <!-- <th>Lastname</th> -->
+          </tr>
+          <tbody id="tableTime"></tbody>
+            <!-- <td id="tableScore"></td> -->
+      </table>
+    </div>
+
+
+<br>
+    <table>
+        <tr>
+          <th>Highest Time</th>
+          <th>Lowest Time</th>
+        </tr>
+        <td id="highest">0 Sec</td>
+        <td id="lowest">0 Sec</td>
+    </table>
+<br><br><br>
+    <h2 class="tag-heading"><span>Start Practice</span></h2>
+    <div class="all-math">
+      <li><a href="multiplication_2x2.html"><span>1</span>Multiplication (2 x 2)</a></li>
+      <li><a href="multiplication_3x2.html"><span>2</span>Multiplication (3 x 2)</a></li>
+      <li><a href="multiplication_3x3.html"><span>3</span>Multiplication (3 x 3)</a></li>
+
+      <li><a href="subtraction_2x2.html"><span>4</span>Subtraction (2 - 2)</a></li>
+      <li><a href="subtraction_3x3.html"><span>5</span>Subtraction (3 - 3)</a></li>
+      <li><a href="subtraction_3x2.html"><span>6</span>Subtraction (3 - 2)</a></li>
+      <li><a href="substraction_3x2x3.html"><span>7</span>Subtraction (3 - 2 - 3)</a></li>
+
+      <li><a href="addition_2x2.html"><span>8</span>Addition (2 x 2)</a></li>
+      <li><a href="addition_3x3.html"><span>9</span>Addition (3 + 3)</a></li>
+      <li><a href="addition_3x2.html"><span>10</span>Addition (3 + 2)</a></li>
+      <li><a href="addition_3x2x3.html"><span>11</span>Addition (3 + 2 + 3)</a></li>
+
+      <li><a href="division.html"><span>12</span>Division</a></li>
+
+
+      <li class="active"><a href="squre_2_to_30.html"><span>13</span>Squre (2 to 30)</a></li>
+      <li><a href="squre_31_plus.html"><span>14</span>Squre (31 to 151)</a></li>
+
+      <li><a href="cube_2_to_20.html"><span>15</span>Cube (2 to 20)</a></li>
+
+      <li><a href="squre_root.html"><span>16</span>Squre Root</a></li>
+      <li><a href="cube_root.html"><span>17</span>Cube Root</a></li>
+
+      <li><a href="table_2_to_30.html"><span>18</span>Table (Upto to 30)</a></li>
+      <li><a href="table_11_to_100.html"><span>19</span>Table (11 to 100)</a></li>
+      <li><a href="percentage.html"><span>20</span>Percentage to Fraction</a></li>
+    </div>
+
+<br>
+
+
+    <footer>
+      <div class="policy">
+        <li><a href="">Privacy Policy</a> </li>
+        <li><a href="">Sitemap</a> </li>
+        <li><a href="">Disclaimer</a> </li>
+      </div>
+      <div class="copyrights">Copyright © 2023 || D & M by Sandeep</div>
+    </footer>
+
+    <div class="blank"></div>
+    <div class="links-2">
+      <a href="index.html">Home</a>
+      <a href="#ul" style="">More+</a>
+      <a href="#" style="">Share</a>
+      <a href="index.html">About</a>
+    </div>
+
+<!-- javascript code start here -->
+
+
+    <script>
+
+  // Dark Mode Code
+
+      const toggle_btn = document.querySelector('#checkbox')
+toggle_btn.addEventListener('change', () =>{
+
+  if(toggle_btn.checked){
+    document.body.classList.add('dark-mode')
+  }
+  else{
+    document.body.classList.remove('dark-mode')
+  }
+})
+
+function deleteItems() {
+  localStorage.clear("time_data_sq230");
+  window.location.reload()
+}
+
+
+var data = 1;
+  var i;
+  let greeting = "";
+  document.getElementById("root").innerText=data;
+  for(i=0;i<=10;i++){
+    function increment() {
+      if (document.forms['form'].answer.value === "") {
+          document.body.classList.add('red-wrong');
+          document.getElementById('answerInput').placeholder = 'Enter Your Answer';
+          return false;
+      }
+      else{
+          document.body.classList.remove('red-wrong')
+      }
+      
+    document.getElementById("root").innerText=data;
+    if(data == 10){
+      greeting = " You Take: " + min + " : " + sec + " : " + mili + "<br>" + "Time Saved in Table";
+        var timeleft = 10;
+        var downloadTimer = setInterval(function(){
+          if(timeleft <= 0){
+            clearInterval(downloadTimer);
+            document.getElementById("countdown").innerHTML = "Finished";
+            window.location.reload();
+          }
+          else {
+              document.getElementById("countdown").innerHTML = "Auto Reset in " + timeleft + " sec";
+          }
+              timeleft -= 1;
+            }, 1000);
+
+
+
+          // setTimeout("location.reload(true);",5000);
+
+          document.getElementById("timer-text").style.display = "none";
+          document.getElementById("q-box").style.display = "none";
+          document.getElementById("counter-btn").style.display = "none";
+          
+          // Storing data:
+          var new_time = (min*60) + sec;
+          var new_score = score;
+
+          if (localStorage.getItem('time_data_sq230') == null) {
+            localStorage.setItem('time_data_sq230','[]');
+          }
+          var old_time = JSON.parse(localStorage.getItem('time_data_sq230'));
+          old_time.push(new_time);
+
+          localStorage.setItem('time_data_sq230',JSON.stringify(old_time));
+        }
+
+
+        // for score
+          // if (localStorage.getItem('score_data') == null) {
+          //   localStorage.setItem('score_data','[]');
+          // }
+
+          // var old_score = JSON.parse(localStorage.getItem('score_data'));
+          // old_score.push(new_score);
+
+          // localStorage.setItem('score_data',JSON.stringify(old_score));
+
+
+          if(data > 10){
+            location.reload();
+          }
+          document.getElementById("demo").innerHTML = greeting;
+        }}
+
+      // Retrieving Time data:
+    if (localStorage.getItem('time_data_sq230') != null) {
+      const timeArray = JSON.parse(localStorage.getItem('time_data_sq230'));
+      // document.getElementById("local-score").innerHTML = timeArray;
+
+      let lastTimeElement = timeArray.slice(-5);
+      let q = lastTimeElement.length;
+      let p = timeArray.length;
+      for (var i = (p-q); i < p; i++) {
+
+        // document.write("Time Taken for "+i+" test is :"+timeArray[i] + " sec" + "<br>");
+
+          var outputHTML = "";
+          outputHTML = "<table>";
+          for(var j= (p-q);j<p;j++){
+            outputHTML+= "<tr>";
+            let min = 
+            outputHTML+= '<td>' + Math.floor(timeArray[j]/60) + "m" + " : " + (timeArray[j]%60) + "s" + '</td>';
+            document.getElementById("tableTime").innerHTML = outputHTML;
+            outputHTML+= "</tr>";
+          }
+          
+          outputHTML+= "</table>";
+
+      }
+
+
+      //max min value
+      function findMinMax() {
+        let Arr = timeArray;
+ 
+        let minValue = Math.min(...Arr);
+        let maxValue = Math.max(...Arr);
+     
+        document.getElementById("highest").innerHTML = Math.floor(minValue/60) + " min : " + Math.floor(minValue%60) + " sec";
+        document.getElementById("lowest").innerHTML = Math.floor(maxValue/60) + " min : " + Math.floor(maxValue%60) + " sec";
+        }
+      findMinMax();
+
+
+
+      //Retrive Score Data
+
+      // if (localStorage.getItem('score_data') != null) {
+      // const scoreArray = JSON.parse(localStorage.getItem('score_data'));
+      // // document.getElementById("local-score").innerHTML = scoreArray;
+
+      // let lastScoreElement = scoreArray.slice(-5);
+      // let x = lastScoreElement.length;
+      // let y = scoreArray.length;
+      // for (var k = (y-x); k<y; k++) {
+
+      //   document.write("Time Taken for "+i+" test is :"+scoreArray[i] + " sec" + "<br>");
+
+      //     var outputHTML = "";
+      //     outputHTML = "<table>";
+      //     for(var m=(y-x);m<y;m++){
+      //       outputHTML+= "<tr>";
+      //       outputHTML+= '<td>' + scoreArray[m] + '</td>';
+      //       document.getElementById("tableScore").innerHTML = outputHTML;
+      //       outputHTML+= "</tr>";
+      //     }
+      //     outputHTML+= "</table>";
+
+      // }
+      // alert(q);
+
+}
+      let count = 0;
+      let min = 0;
+      let sec = 0;
+      let mili = 0;
+      let intervalId;
+
+      
+      const btnStart2 = document.getElementById("counter-btn");
+      btnStart2.addEventListener("click", function(){
+        setInterval(function(){
+
+          mili+=1;
+          if(mili == 100){
+            sec+=1;
+            mili=0;
+            mili++;
+          }
+          if (sec == 60) {
+            min+=1;
+            sec = 0;
+          }
+          let time = min + " : " + sec + " : " + mili;
+          document.getElementById("timer-text").innerHTML = time;
+
+      },10);
+      });
+
+      // const btnStart = document.getElementById("counter-btn");
+      // btnStart.addEventListener("click", function(){
+      //   setInterval(function(){
+      //     count+=1;
+      //     document.getElementById("timer-text").innerHTML = count;
+      //   }, 1000);
+      // });
+
+    </script>
+
+    <script>
+      function myFunction() {
+      document.getElementById("primary-btn").style.display = "block";
+      document.getElementById("answerInput").style.display = "block";
+      }
+</script>
+
+  </body>
+</html>

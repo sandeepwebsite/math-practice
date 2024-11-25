@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Percentage to Fraction</title>
+  <link rel="stylesheet" href="css/percentage.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" type="image/x-icon" href="image/favicon-2.png">
+    <script src="js/percentage.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <div class="logo"> 
+        <img src="image/favicon-2.png" />
+        <div class="logo-text">
+          <h3>Dear</h3>
+          <h3>Aspirant</h3>
+        </div>
+      </div>
+
+      <div class="toggle-btn">
+          <input type="checkbox" id="checkbox">
+      </div>
+      <div class="links">
+        <a href="https://sandeepmath.000webhostapp.com/"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+        <a href="#tags">More+</a>
+        <a href="https://sandeepmath.000webhostapp.com/">About</a>
+      </div>
+    </header>
+
+	<body onload="NextQuestion(0)">
+    <main>
+        <!-- creating a modal for when quiz ends -->
+        <div class="modal-container" id="score-modal">
+          
+            <div class="modal-content-container">
+              
+                <h1>Congratulations, Quiz Completed.</h1>
+              
+                <div class="grade-details">
+                    <p>Attempts : 10</p>
+                    <p>Wrong Answers : <span id="wrong-answers"></span></p>
+                    <p>Right Answers : <span id="right-answers"></span></p>
+                    <p>Grade : <span id="grade-percentage"></span>%</p>
+                    <p ><span id="remarks"></span></p>
+                </div>
+              
+                <div class="modal-button-container">
+                    <button onclick="closeScoreModal()">Continue</button>
+                </div>
+              
+            </div>
+        </div>
+
+        <div class="game-quiz-container">
+          
+            <div class="game-details-container">
+                <h1>Score : <span id="player-score"></span> / 10</h1>
+                <h1> Question : <span id="question-number"></span> / 10</h1>
+            </div>
+
+            <div class="game-question-container">
+                <h1 id="display-question"></h1>
+            </div>
+
+            <div class="game-options-container">
+              
+               <div class="modal-container" id="option-modal">
+                 
+                    <div class="modal-content-container">
+                         <h1>Please Pick An Option</h1>
+                      
+                         <div class="modal-button-container">
+                            <button onclick="closeOptionModal()">Continue</button>
+                        </div>
+                      
+                    </div>
+                 
+               </div>
+              
+                <span>
+                    <input type="radio" id="option-one" name="option" class="radio" value="optionA" />
+                    <label for="option-one" class="option" id="option-one-label"></label>
+                </span>
+              
+
+                <span>
+                    <input type="radio" id="option-two" name="option" class="radio" value="optionB" />
+                    <label for="option-two" class="option" id="option-two-label"></label>
+                </span>
+              
+
+                <span>
+                    <input type="radio" id="option-three" name="option" class="radio" value="optionC" />
+                    <label for="option-three" class="option" id="option-three-label"></label>
+                </span>
+              
+
+                <span>
+                    <input type="radio" id="option-four" name="option" class="radio" value="optionD" />
+                    <label for="option-four" class="option" id="option-four-label"></label>
+                </span>
+
+
+            </div>
+
+            <div class="next-button-container">
+                <button onclick="handleNextQuestion()">Next Question</button>
+            </div>
+
+        </div>
+    </main>
+
+
+
+
+
+
+
+
+
+
+
+
+    <h2 class="tag-heading"><span>Start Practice</span></h2>
+    <div class="all-math">
+      <li><a href="multiplication_2x2.html"><span>1</span>Multiplication (2 x 2)</a></li>
+      <li><a href="multiplication_3x2.html"><span>2</span>Multiplication (3 x 2)</a></li>
+      <li><a href="multiplication_3x3.html"><span>3</span>Multiplication (3 x 3)</a></li>
+
+      <li><a href="subtraction_2x2.html"><span>4</span>Subtraction (2 - 2)</a></li>
+      <li><a href="subtraction_3x3.html"><span>5</span>Subtraction (3 - 3)</a></li>
+      <li><a href="subtraction_3x2.html"><span>6</span>Subtraction (3 - 2)</a></li>
+      <li><a href="substraction_3x2x3.html"><span>7</span>Subtraction (3 - 2 - 3)</a></li>
+
+      <li><a href="addition_2x2.html"><span>8</span>Addition (2 x 2)</a></li>
+      <li><a href="addition_3x3.html"><span>9</span>Addition (3 + 3)</a></li>
+      <li><a href="addition_3x2.html"><span>10</span>Addition (3 + 2)</a></li>
+      <li><a href="addition_3x2x3.html"><span>11</span>Addition (3 + 2 + 3)</a></li>
+
+      <li><a href="division.html"><span>12</span>Division</a></li>
+
+
+      <li><a href="squre_2_to_30.html"><span>13</span>Squre (2 to 30)</a></li>
+      <li><a href="squre_31_plus.html"><span>14</span>Squre (31 to 151)</a></li>
+
+      <li><a href="cube_2_to_20.html"><span>15</span>Cube (2 to 20)</a></li>
+
+      <li><a href="squre_root.html"><span>16</span>Squre Root</a></li>
+      <li><a href="cube_root.html"><span>17</span>Cube Root</a></li>
+
+      <li><a href="table_2_to_30.html"><span>18</span>Table (Upto to 30)</a></li>
+      <li><a href="table_11_to_100.html"><span>19</span>Table (11 to 100)</a></li>
+      <li class="active"><a href="percentage.html"><span>20</span>Percentage to Fraction</a></li>
+    </div>
+
+<br>
+
+
+    <footer>
+      <div class="policy">
+        <li><a href="">Privacy Policy</a> </li>
+        <li><a href="">Sitemap</a> </li>
+        <li><a href="">Disclaimer</a> </li>
+      </div>
+      <div class="copyrights">Copyright © 2023 || D & M by Sandeep</div>
+    </footer>
+
+    <div class="blank"></div>
+    <div class="links-2">
+      <a href="index.html">Home</a>
+      <a href="#ul" style="">More+</a>
+      <a href="#" style="">Share</a>
+      <a href="index.html">About</a>
+    </div>
+
+
+
+    <script>
+
+  // Dark Mode Code
+  const toggle_btn = document.querySelector('#checkbox')
+        toggle_btn.addEventListener('change', () =>{
+    if(toggle_btn.checked){
+        document.body.classList.add('dark-mode')
+      }
+      else{
+        document.body.classList.remove('dark-mode')
+      }
+    })
+</script>
+</body>
+</html>

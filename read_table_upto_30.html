@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Multiplication Table</title>
+</head>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@500;700;800&family=Poppins:wght@300&display=swap');
+*{
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+body{
+	font-family: 'Poppins', sans-serif;
+}
+.Container {
+  position: relative;
+  display: block;
+  width: 100%;
+  margin: 0;
+  background-color: #f0f0f0;
+  color: #333;
+  box-sizing: border-box;
+}
+
+.Heading {
+  display: block; 
+  width: 99%;
+  text-transform: uppercase;
+  text-align: center;
+    
+  box-sizing: border-box;
+}
+
+.MultiplicationTable {
+  position: relative;
+  display: table;
+  table-layout: fixed;
+  width: 99%;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #333;
+  text-align: left;
+}
+
+.MultiplicationTable__row {
+  display: table-row;
+  
+  box-sizing: border-box;
+}
+
+.MultiplicationTable__row:nth-child(2n) {
+  background-color: #ccc;
+}
+.MultiplicationTable__row:first-child {
+  font-weight: 700;
+  background: black;
+  color: white;
+}
+.MultiplicationTable__row:first-child .MultiplicationTable__cell:first-child{
+  color: transparent;
+}
+.MultiplicationTable__row:first-child .MultiplicationTable__cell:first-child:after{
+  content: "x";
+  font-size: 1rem;
+  color: white;
+  text-align: center;
+}
+.MultiplicationTable__cell {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  padding: 2px;
+  box-sizing: border-box;
+}
+
+.MultiplicationTable__cell:first-child {
+  font-weight: 700;
+  background: black;
+  color: white;
+  border-bottom: 1px solid #333;
+}
+.MultiplicationTable__cell + .MultiplicationTable__cell {
+  border-left: 1px solid #333;
+}
+
+
+</style>
+<body>
+
+
+
+<div class="Container">
+<h2 class="Heading">Multiplication Table</h2>
+<div class="MultiplicationTable">
+</div>
+</div>
+
+
+<script>
+
+
+(function(){
+
+  var $multiplicationTable = document.querySelector(".MultiplicationTable");
+  var i;
+  var j;
+  var newRow; 
+  var newCell; 
+
+  function createCell (i, j) {
+    newCell = document.createElement("span");
+    newCell.classList.add("MultiplicationTable__cell");
+    newCell.innerHTML = i*j;
+    newRow.appendChild(newCell);      
+  }
+
+  function createLine (i) {
+    newRow = document.createElement("div");
+    newRow.classList.add("MultiplicationTable__row");
+
+    $multiplicationTable.appendChild(newRow);   
+
+    for (j=1; j<=10; j++) {
+      createCell(i, j);
+
+      if (j==1) {
+        createCell(i, j);
+      }                                                  
+    }
+  }
+
+  for (i=1; i<=30; i++) {
+    createLine(i);
+    if (i==1) {
+      createLine(i);
+    }
+  }
+
+})();
+
+
+</script>
+</body>
+</html>
