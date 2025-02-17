@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Subtraction Quiz</title>
+    <link rel="stylesheet" href="css/apps.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" type="image/x-icon" href="image/favicon-2.png">
+    <script src="js/subtraction_3x3.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<header>
+    <div class="logo">
+        <img src="image/favicon-2.png" />
+        <div class="logo-text" onclick="window.location.href='index.html';">
+            <h3>Dear</h3>
+            <h3>Aspirant</h3>
+        </div>
+    </div>
+    <div class="links">
+        <a href="index.html"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+        <a href="#tags">More+</a>
+        <a href="index.html">About</a>
+    </div>
+    <button id="darkbutton" class="darkmode">☽</button>
+</header>
+
+<div class="background">
+    <div class="box">
+        <p style="font-size: 22px; font-weight: 500;" class="title-heading">- Subtraction -</p>
+        <!-- Buttons to select the number of questions -->
+        <div class="question-btn">
+          <button id="btn10" onclick="setTotalQuestions(2)" class="btn active">10 Questions</button>
+          <button id="btn20" onclick="setTotalQuestions(3)" class="btn">20 Questions</button>
+        </div>
+
+        <p style="text-align: center;">No of Questions: 10 <br> Tthree and Three digit Number</p>
+        <h3 id="timer-text">00 : 00 : 00</h3>
+
+
+
+        <span id="completeMsgId">Quiz Completed.. <br> Time saved on table</span>
+        <div id="q-box">
+            <span class="q-span"><span id="root"></span></span>
+            <span id="question"></span>
+            <span id="message-text">Click to Start</span>
+        </div>
+
+        <form name="form" id="questionForm" onsubmit="checkAnswer(event)">
+            <input required id="answerInput" name="answer" type="text" inputmode="numeric" placeholder="Answer" />
+            <p id="demo"></p>
+            <div style="text-align: center;color: red;"><span id="countdown"></span></div>
+            <button id="primary-btn" type="submit">Submit</button>
+
+            <div class="action-btn">
+                <input type="button" value="Start" id="counter-btn" onclick="myFunction()" />
+                <input type="button" value="Reset" id="reset-btn" onclick="resetQuiz()" />
+            </div>
+        </form>
+    </div>
+</div>
+<br>
+<div id="table-content">
+      <!-- Tab navigation -->
+    <div class="tabs">
+        <button class="tab-button active" id="tableTab" onclick="switchTab('table')">Table</button>
+        <button class="tab-button" id="chartTab" onclick="switchTab('chart');">Chart</button>
+        <div class="chartIcon">
+          <i class="fa fa-trash-o" onclick= "deleteItems()" style="font-size:20px;color:red; cursor: pointer;" title="Clear Table"></i>
+          <span>Table</span>
+        </div>
+    </div>
+    
+
+    <!-- Table content -->
+    <div class="tableDiv active" id="tableDiv">
+        <table>
+            <tr>
+                <th>Last 5 Score</th>
+            </tr>
+            <tbody id="tableTime"></tbody>
+        </table>
+        <br>
+        <table>
+            <tr>
+                <th>Lowest Time</th>
+                <th>Highest Time</th>
+            </tr>
+            <td id="highest">0 Sec</td>
+            <td id="lowest">0 Sec</td>
+        </table>
+    </div>
+
+    <!-- Chart content -->
+    <div class="chartDiv" id="chartDiv">
+        <canvas id="myLineChart"></canvas>
+        <canvas id="myBarChart2"></canvas>
+    </div>
+</div>
+<br>
+
+<h2 class="tag-heading"><span>Start Practice</span></h2>
+<div class="all-math">
+      <div class="row">
+        <div class="row-box" onclick="window.location.href='multiplication_2x2.html';">
+          <p class="symbols">x</p>
+          <h3>57 x 47 = ?</h3>
+          <p id="lastScore_m22"></p>          
+        </div>
+        <div class="row-box" onclick="window.location.href='multiplication_3x2.html';">
+          <p class="symbols">x</p>
+          <h3>547 x 58 = ?</h3>
+          <p id="lastScore_m32"></p>          
+        </div>
+        <div class="row-box" onclick="window.location.href='multiplication_3x3.html';">
+          <p class="symbols">x</p>
+          <h3>557 x 471 = ?</h3>
+          <p id="lastScore_m33"></p>          
+        </div>
+        <div class="row-box" onclick="window.location.href='division.html';">
+          <p class="symbols">÷</p>
+          <h3>573 ÷ 13 = ?</h3>
+          <p id="lastScore_d"></p>          
+        </div>
+      </div>
+      <div class="row">
+        <div class="row-box" onclick="window.location.href='addition_2x2.html';">
+          <p class="symbols">+</p>
+          <h3>12 + 25 = ?</h3>
+          <p id="lastScore_a22"></p>          
+        </div>
+        <div class="row-box" onclick="window.location.href='addition_3x2.html';">
+          <p class="symbols">+</p>
+          <h3>87 + 452 = ?</h3>
+          <p id="lastScore_a23"></p>          
+        </div>
+        <!-- <div class="row-box" onclick="window.location.href='addition_3x2x3.html';">
+          <p class="symbols">+</p>
+          <h3>689 + 23 + 573 = ?</h3>
+          <p id="lastScore_a323"></p>          
+        </div> -->
+        <div class="row-box" onclick="window.location.href='addition_3x3.html';">
+          <p class="symbols">+</p>
+          <h3>577 + 147 = ?</h3>
+          <p id="lastScore_a33"></p>          
+        </div>
+        <div class="row-box" onclick="window.location.href='substraction_2x2.html';">
+          <p class="symbols">-</p>
+          <h3>65 - 23 = ?</h3>
+          <p id="lastScore_s22"></p>          
+        </div>
+      </div>
+      <div class="row">
+        <div class="row-box" onclick="window.location.href='substraction_3x2.html';">
+          <p class="symbols">-</p>
+          <h3>369 - 147 = ?</h3>
+          <p id="lastScore_s23"></p>          
+        </div>
+        <!-- <div class="row-box" onclick="window.location.href='substraction_3x2x3.html';">
+          <p class="symbols">-</p>
+          <h3>528 - 25 - 157 = ?</h3>
+          <p id="lastScore_s323"></p>          
+        </div> -->
+        <div class="row-box" onclick="window.location.href='substraction_3x3.html';">
+          <p class="symbols">-</p>
+          <h3>789 - 527 = ?</h3>
+          <p id="lastScore_s33"></p>          
+        </div>
+        <div class="row-box" onclick="window.location.href='squre_2_to_30.html';">
+          <p class="symbols">x²</p>
+          <h3>25² = ?</h3>
+          <p id="lastScore_s230"></p>          
+        </div>
+        <div class="row-box" onclick="window.location.href='squre_31_plus.html';">
+          <p class="symbols">x²</p>
+          <h3>87² = ?</h3>
+          <p id="lastScore_s31"></p>          
+        </div>
+      </div>
+      <div class="row">
+        <div class="row-box" onclick="window.location.href='squre_root.html';">
+          <p class="symbols">√</p>
+          <h3>√625 = ?</h3>
+          <p id="lastScore_sqrt"></p>          
+        </div>
+        <div class="row-box" onclick="window.location.href='cube_2_to_20.html';">
+          <p class="symbols">x3</p>
+          <h3>5^3 = ?</h3>
+          <p id="lastScore_cu220"></p>          
+        </div>
+        <div class="row-box" onclick="window.location.href='cube_root.html';">
+          <p class="symbols">∛</p>
+          <h3>∛1331 = ?</h3>
+          <p id="lastScore_cbrt220"></p>          
+        </div>
+        <div class="row-box" onclick="window.location.href='percentage.html';">
+          <p class="symbols">%</p>
+          <h3>25% = ?</h3>
+          <p>Attempt Now</p>          
+        </div>
+      </div>
+    </div>
+
+<footer>
+    <div class="copyrights">Copyright © 2023 || D & M by Sandeep</div>
+</footer>
+
+<div class="blank"></div>
+<div class="links-2">
+    <a href="index.html">Home</a>
+    <a href="#ul" style="">More+</a>
+    <a href="#" style="">Share</a>
+    <a href="index.html">About</a>
+</div>
+<script src="js/common.js"></script>
+</body>
+</html>
