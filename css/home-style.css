@@ -186,15 +186,16 @@ a:hover{
   font-size: 17px;
   cursor: pointer;
 }
-.dwld-btn span{
+.dwld-btn .wpbtn{
   background: var(--bg-box);
-  padding: 5px;
+  padding: 8px;
   margin-right: 1px;
-}
-.dwld-btn a{
-  padding-left: 8px;
-  background: var(--bg-box);
-  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+
 }
 
 .background {
