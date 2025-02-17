@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Cookie&display=swap');
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Amita:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Vinyl&display=swap');
 /*:root {
     --bg-black:linear-gradient(145deg, #1c1d21, #17181c);
     --bg-white:#f4f4f4;
@@ -67,6 +69,7 @@ header{
   display: flex;
   justify-content: space-between;
   line-height: 60px;
+  z-index: 100;
 }
 header .logo{
   color: var(--bg-black);
@@ -124,28 +127,12 @@ header a{
   border-radius: 12px;
 }
 
-.toggle-btn{
-  align-items: center;
-}
-.toggle-btn input[type=checkbox] {
-    position: relative;
-    visibility: hidden;
-    cursor: pointer;
-    top: 18px;
-}
-
-.toggle-btn input[type=checkbox]:after {
-    display: block;
-    content: "☽";
-    visibility: visible;
-    position: relative;
-    top: -20px;
-    font-size: 40px;
-    color: black;
-}
-.toggle-btn input[type=checkbox]:checked:after {
-    content: "☀";
-    color: white;
+.darkmode{
+  background: transparent;
+  font-size: 30px;
+  border: none;
+  padding-right: 20px;
+  cursor: pointer;
 }
 
 li{
@@ -182,16 +169,9 @@ a:hover{
   align-items: center;
   flex-direction: column;
   padding: 50px;
-  top: 50px;
+/*  top: 50px;*/
   position: relative;
-  background: #f4f4f4;
-  box-shadow:  3px 3px 6px #bebebe, 
-                 -3px -3px 6px #ffffff;
-
-  border-bottom-left-radius: 40px;
-  border-top-right-radius: 40px;
-  transition: all 300ms linear 0s;
-  background: var(--bg-white);
+  box-shadow:  3px 3px 6px #bebebe;
 }
 
 .box:hover {
@@ -388,28 +368,7 @@ input[type=button]:active {
 }
 #table-content{
   position: relative;
-  top: 20px;
-}
-
-#myLineChart, #myBarChart2{
-  width: 400px;
-  height: 300px;
-}
-.chartIcon{
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.chartIcon .fa{
-  background: var(--bg-box);
-  padding: 5px;
-  border-radius: 100px;
-  width: 40px;
-  height: 40px;
-  text-align: center;
-  cursor: pointer;
+/*  top: 20px;*/
 }
 table, td, th {
   border: 1px solid;
@@ -419,13 +378,22 @@ table {
   width: 50%;
   border-collapse: collapse;
   position: relative;
-  top: 50px;
   padding: 10px;
+  top: 10px;
   margin: auto;
   text-align: center;
 }
 
+.chartDiv{
+  padding: 10px;
+  max-width: 400px;
+  margin: auto;
+}
 
+.chartIcon{
+  position: relative;
+  padding: 10px;
+}
 
 .all-math{
   position: relative;
@@ -434,39 +402,37 @@ table {
   margin: auto;
   display: grid;
   gap: 10px;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(540px, 1fr));
   text-align: center;
 }
-.all-math li{
-  width: 100%;
-  color: var(--bg-black);
-  padding: 5px;
-  margin: 5px;
-  background: linear-gradient(to right, var(--bg-box) 50%, transparent 50%);
-  background-size: 200% 100%;
-  background-position: right bottom;
-  transition: all .5s ease-out;
-  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+.all-math .row{
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+  color: var(--bg-text);
+  gap: 0.1rem;
+  text-align: center;
 }
-.all-math li:hover{
-  background-position: left bottom;
+.all-math .row .row-box{
+  -ms-flex: 24%; /* IE10 */
+  flex: 24%;
+  max-width: 24%;
+  font-size: 0.6rem;
+  margin: auto;
+  cursor: pointer;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-.dark-mode .all-math li{
-    box-shadow:  3px 3px 6px #101114, 
-                 -3px -3px 6px #24252a;
-}
-.all-math li span{
-/*  border-right: solid 1px;*/
-  padding-left: 5px;
-  padding-right: 5px;
+.all-math .row .row-box .symbols{
+  font-size: 30px;
   background: var(--bg-box);
-  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-  float: left;
-  width: 20%;
-  border-radius: 100px;
+   font-family: "Rubik Vinyl", serif;
+  font-weight: 400;
+  font-style: normal;
 }
-.all-math .active{
-  background: #00b3b3;
+.all-math .row .row-box h3{
+  border-bottom: dashed 1px;
+  text-align: center;
 }
 .dark-mode .all-math .active{
   background: #0d0d0d;
@@ -475,6 +441,19 @@ table {
   text-decoration: none;
   text-align: center;
   padding-left: 5px;
+}
+
+#start-btn {
+  display: block;
+}
+
+#primary-btn,
+#answerInput {
+  display: none;
+}
+
+#demo {
+  display: none;
 }
 .tag-heading{
   position: relative;
@@ -526,11 +505,16 @@ footer{
   display: none;
 }
 
+
+
 /*mobile menu*/
 @media (min-width: 290px) and (max-width: 640px){
   header .logo span{
     display: none;
-  } 
+  }
+  .all-math{
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  }
   .links{
     display: none;
   }
@@ -629,6 +613,9 @@ footer{
     width: 98%;
     margin: 2px;
   }
+  .all-math{
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  }
   .tags{
     width: 90%;
     margin: auto;
@@ -644,3 +631,119 @@ footer{
   top: 40px;
   left: -55px;
 }*/
+
+
+/* Tabs Styling */
+.tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.tab-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #f1f1f1;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.tab-button:hover {
+    background-color: #ddd;
+}
+
+.tab-button.active {
+    background-color: var(--bg-box);
+    color: white;
+}
+
+.tableDiv, .chartDiv {
+    display: none;
+}
+
+/* Make the active tab content visible */
+.tableDiv.active, .chartDiv.active {
+    display: block;
+}
+
+
+.completion-message {
+  position: absolute;
+  text-align: center;
+  background: var(--bg-white);
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  left: 0;
+  top: 10px;
+/*  z-index: -0.5;*/
+  padding-top: 5px;
+}
+
+.completion-message h2 {
+  color: var(--bg-text);
+}
+
+.completion-message button {
+  background: var(--bg-box);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.completion-message button:hover {
+  background: #45a049;
+}
+
+.leaderboard {
+    margin-top: 30px;
+/*    background: white;*/
+    padding: 10px;
+    width: 300px;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn {
+  padding: 10px 20px;
+  margin: 5px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background: #218838;
+}
+.btn.active {
+  background-color: #4CAF50; /* Green background for active button */
+  color: white; /* White text for active button */
+  border-color: #4CAF50;
+}
+#result {
+    font-weight: bold;
+    margin-top: 10px;
+}
+#userAnswer{
+  width: 50%;
+  height: 35px;
+  padding: 5px;
+}
+#completeMsgId{
+  display: none;
+  text-align: center;
+}
+/* Style for the questions active buttons */
+.question-btn {
+/*  display: flex;*/
+  display: none;
+}
+
+/* Active button style */
+
