@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LCM Quiz</title>
+    <link rel="stylesheet" href="css/apps.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" type="image/x-icon" href="image/favicon-2.png">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<header>
+    <div class="logo">
+        <img src="image/favicon-2.png" />
+        <div class="logo-text" onclick="window.location.href='index.html';">
+            <h3>Dear</h3>
+            <h3>Aspirant</h3>
+        </div>
+    </div>
+    <div class="links">
+        <a href="index.html"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+        <a href="#tags">More+</a>
+        <a href="index.html">About</a>
+    </div>
+    <button id="darkbutton" class="darkmode">☽</button>
+</header>
+
+<div class="background">
+    <div class="box">
+    <p style="font-size: 22px; font-weight: 500;" class="title-heading">+ LCM Quiz +</p>
+        
+        <button id="startButton" class="btn" onclick="startQuiz()">Start Quiz</button>
+        
+        <p><b>Time:</b> <span id="timer">00:00.00</span></p>
+        
+        <div id="quizSection" style="display: none;">
+            <p style="text-align: center;">Question <span id="questionCount">1</span> / 10</p>
+            <p>Find the LCM of: <span id="numbers"></span></p>
+            <input type="number" id="userAnswer" placeholder="Enter LCM here">
+            <button onclick="checkAnswer()" class="btn">Submit</button>
+            <p id="result"></p>
+            <button onclick="restartQuiz()" class="btn">Restart Quiz</button>
+        </div>
+    </div>
+</div>
+<br>   
+
+    <!-- Table content -->
+    <div class="leaderboard">
+        <table id="leaderboardTable">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Time Taken</th>
+                </tr>
+            </thead>
+            <tbody id="leaderboardBody"></tbody>
+        </table>
+    </div>
+<br>
+
+<h2 class="tag-heading"><span>Start Practice</span></h2>
+<div class="all-math">
+      <div class="row">
+        <div class="row-box" onclick="window.location.href='multiplication_2x2.html';">
+          <p class="symbols">x</p>
+          <h3>57 x 47 = ?</h3>
+          <p id="lastScore_m22"></p>          
+        </div>
+        <div class="row-box" onclick="window.location.href='multiplication_3x2.html';">
+          <p class="symbols">x</p>
+          <h3>547 x 58 = ?</h3>
+          <p id="lastScore_m32"></p>          
+        </div>
+        <div class="row-box" onclick="window.location.href='multiplication_3x3.html';">
+          <p class="symbols">x</p>
+          <h3>557 x 471 = ?</h3>
+          <p id="lastScore_m33"></p>          
+        </div>
+        <div class="row-box" onclick="window.location.href='division.html';">
+          <p class="symbols">÷</p>
+          <h3>573 ÷ 13 = ?</h3>
+          <p id="lastScore_d"></p>          
+        </div>
+      </div>
+      <div class="row">
+        <div class="row-box" onclick="window.location.href='addition_2x2.html';">
+          <p class="symbols">+</p>
+          <h3>12 + 25 = ?</h3>
+          <p id="lastScore_a22"></p>          
+        </div>
+        <div class="row-box" onclick="window.location.href='addition_3x2.html';">
+          <p class="symbols">+</p>
+          <h3>87 + 452 = ?</h3>
+          <p id="lastScore_a23"></p>          
+        </div>
+        <!-- <div class="row-box" onclick="window.location.href='addition_3x2x3.html';">
+          <p class="symbols">+</p>
+          <h3>689 + 23 + 573 = ?</h3>
+          <p id="lastScore_a323"></p>          
+        </div> -->
+        <div class="row-box" onclick="window.location.href='addition_3x3.html';">
+          <p class="symbols">+</p>
+          <h3>577 + 147 = ?</h3>
+          <p id="lastScore_a33"></p>          
+        </div>
+        <div class="row-box" onclick="window.location.href='substraction_2x2.html';">
+          <p class="symbols">-</p>
+          <h3>65 - 23 = ?</h3>
+          <p id="lastScore_s22"></p>          
+        </div>
+      </div>
+      <div class="row">
+        <div class="row-box" onclick="window.location.href='substraction_3x2.html';">
+          <p class="symbols">-</p>
+          <h3>369 - 147 = ?</h3>
+          <p id="lastScore_s23"></p>          
+        </div>
+        <!-- <div class="row-box" onclick="window.location.href='substraction_3x2x3.html';">
+          <p class="symbols">-</p>
+          <h3>528 - 25 - 157 = ?</h3>
+          <p id="lastScore_s323"></p>          
+        </div> -->
+        <div class="row-box" onclick="window.location.href='substraction_3x3.html';">
+          <p class="symbols">-</p>
+          <h3>789 - 527 = ?</h3>
+          <p id="lastScore_s33"></p>          
+        </div>
+        <div class="row-box" onclick="window.location.href='squre_2_to_30.html';">
+          <p class="symbols">x²</p>
+          <h3>25² = ?</h3>
+          <p id="lastScore_s230"></p>          
+        </div>
+        <div class="row-box" onclick="window.location.href='squre_31_plus.html';">
+          <p class="symbols">x²</p>
+          <h3>87² = ?</h3>
+          <p id="lastScore_s31"></p>          
+        </div>
+      </div>
+      <div class="row">
+        <div class="row-box" onclick="window.location.href='squre_root.html';">
+          <p class="symbols">√</p>
+          <h3>√625 = ?</h3>
+          <p id="lastScore_sqrt"></p>          
+        </div>
+        <div class="row-box" onclick="window.location.href='cube_2_to_20.html';">
+          <p class="symbols">x3</p>
+          <h3>5^3 = ?</h3>
+          <p id="lastScore_cu220"></p>          
+        </div>
+        <div class="row-box" onclick="window.location.href='cube_root.html';">
+          <p class="symbols">∛</p>
+          <h3>∛1331 = ?</h3>
+          <p id="lastScore_cbrt220"></p>          
+        </div>
+        <div class="row-box" onclick="window.location.href='percentage.html';">
+          <p class="symbols">%</p>
+          <h3>25% = ?</h3>
+          <p>Attempt Now</p>          
+        </div>
+      </div>
+    </div>
+
+<footer>
+    <div class="copyrights">Copyright © 2023 || D & M by Sandeep</div>
+</footer>
+
+<div class="blank"></div>
+<div class="links-2">
+    <a href="index.html">Home</a>
+    <a href="#ul" style="">More+</a>
+    <a href="#" style="">Share</a>
+    <a href="index.html">About</a>
+</div>
+<script src="js/common.js"></script>
+<script src="js/lcm-js.js"></script>
+</body>
+</html>
