@@ -5,7 +5,7 @@ let min = 0;
 let sec = 0;
 let mili = 0;
 let timerInterval;
-let totalQuestions = 1; // Total number of questions
+let totalQuestions = 10; // Total number of questions
 let currentQuestion = 1; // Start with the first question
 
 // DOM Elements
