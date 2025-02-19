@@ -43,7 +43,7 @@ const randomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1) + 
 
 // Generate and Display Question
 const generateQuestion = () => {
-  const randomNumber1 = randomNumber(100, 999);
+  const randomNumber1 = randomNumber(10, 99);
   const randomNumber2 = randomNumber(10, 99);
   const question = `${randomNumber1} - ${randomNumber2} = ?`;
   const answer = randomNumber1 - randomNumber2;
