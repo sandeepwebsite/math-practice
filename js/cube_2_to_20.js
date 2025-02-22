@@ -43,7 +43,7 @@ const randomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1) + 
 
 // Generate and Display Question
 const generateQuestion = () => {
-  const randomNumber1 = randomNumber(2, 15);
+  const randomNumber1 = randomNumber(2, 20);
   const question = `${randomNumber1}`;
   const answer = randomNumber1 * randomNumber1 * randomNumber1;
   return { question, answer };
