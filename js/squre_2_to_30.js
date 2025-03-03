@@ -43,11 +43,12 @@ const randomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1) + 
 
 // Generate and Display Question
 const generateQuestion = () => {
-  const generateQuestion = () => {
-  const randomNumber1 = randomNumber(2, 20);
-  // const randomNumber2 = randomNumber(11, 99);
+  const randomNumber1 = randomNumber(7, 30);
+  // const randomNumber2 = randomNumber(11, 100);
+  // const randomNumber3 = randomNumber(1, 3);
   const question = `${randomNumber1}`;
-  const answer = randomNumber1 * randomNumber1 * randomNumber1;
+
+  const answer = randomNumber1 * randomNumber1;
   return { question, answer };
 };
 
@@ -68,12 +69,12 @@ const nextQuestion = () => {
     let newTime = min * 60 + sec;
 
     // Save to Local Storage
-    if (!localStorage.getItem('time_data_cu220')) {
-      localStorage.setItem('time_data_cu220', '[]');
+    if (!localStorage.getItem('time_data_sq230')) {
+      localStorage.setItem('time_data_sq230', '[]');
     }
-    let oldTime = JSON.parse(localStorage.getItem('time_data_cu220'));
+    let oldTime = JSON.parse(localStorage.getItem('time_data_sq230'));
     oldTime.push(newTime);
-    localStorage.setItem('time_data_cu220', JSON.stringify(oldTime));
+    localStorage.setItem('time_data_sq230', JSON.stringify(oldTime));
 
     // Display Timer and Reset Logic
     demoEl.innerHTML = `You Took: ${min} : ${sec} : ${mili}<br>Time Saved in Table`;
@@ -110,8 +111,8 @@ const checkAnswer = (event) => {
 
 // Display Recent Times in Table
 function displayTimeTable() {
-  if (localStorage.getItem('time_data_cu220')) {
-    let timeArray = JSON.parse(localStorage.getItem('time_data_cu220'));
+  if (localStorage.getItem('time_data_sq230')) {
+    let timeArray = JSON.parse(localStorage.getItem('time_data_sq230'));
     let lastFive = timeArray.slice(-5);
     let outputHTML = "";
 
@@ -127,8 +128,8 @@ function displayTimeTable() {
 
 // Find Min/Max Times
 function findMinMax() {
-  if (localStorage.getItem('time_data_cu220')) {
-    let timeArray = JSON.parse(localStorage.getItem('time_data_cu220'));
+  if (localStorage.getItem('time_data_sq230')) {
+    let timeArray = JSON.parse(localStorage.getItem('time_data_sq230'));
     let minValue = Math.min(...timeArray);
     let maxValue = Math.max(...timeArray);
 
@@ -146,7 +147,7 @@ function findMinMax() {
 // Reset Button Logic
 function resetQuizButton() {
   // Clear the stored timer values and table data
-  localStorage.removeItem('time_data_cu220');
+  localStorage.removeItem('time_data_sq230');
   displayTimeTable(); // Refresh the table after reset
 
   // Reset the quiz to its initial state
@@ -171,7 +172,7 @@ function startQuiz() {
 // Delete table data and refresh display
 function deleteItems() {
   // Remove data from localStorage
-  localStorage.removeItem("time_data_cu220");
+  localStorage.removeItem("time_data_sq230");
   graphData = [];
 
   // Refresh the table after deleting data
@@ -193,7 +194,7 @@ function deleteItems() {
 // Update Graph Data
 function updateGraphData() {
   // Retrieve time data from localStorage
-  let graphData = JSON.parse(localStorage.getItem('time_data_cu220')) || [];
+  let graphData = JSON.parse(localStorage.getItem('time_data_sq230')) || [];
 
   if (graphData.length === 0) {
     console.log('No data available.');
@@ -249,7 +250,7 @@ const result = convertToMinutesAndSeconds(inputArray);
 
 
 // Load time data from local storage
-let graphData = JSON.parse(localStorage.getItem('time_data_cu220')) || [];
+let graphData = JSON.parse(localStorage.getItem('time_data_sq230')) || [];
 
 // Initialize the Line Chart (If not already initialized)
 const ctxLine = document.getElementById('myLineChart').getContext('2d');
