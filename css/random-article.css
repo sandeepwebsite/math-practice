@@ -1,0 +1,176 @@
+/* Reset some default browser styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Body and page layout */
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f6f9;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+}
+
+/* Card container */
+.card {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  padding: 2rem;
+  margin: 2rem;
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Title */
+h1 {
+  margin-bottom: 40px;
+  font-size: 2.5rem;
+  text-align: center;
+  color: #34495e;
+}
+
+/* Container for article number */
+#number-container {
+  position: relative;
+  height: 60px; /* enough height for number animation */
+  width: 300px;
+  margin: auto;
+  overflow: hidden;
+  margin-bottom: 30px;
+  border-bottom: 2px solid #3498db;
+}
+
+/* Article number styling and animation */
+.number {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #2980b9;
+  opacity: 1;
+  transform: translateY(100%);
+  animation: dropIn 0.7s forwards;
+}
+
+/* Animate article number dropping in */
+@keyframes dropIn {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+/* Animate article number moving up and fading out */
+.animate-out {
+  animation: moveUpOut 0.7s forwards;
+}
+
+@keyframes moveUpOut {
+  from {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+}
+
+/* Text container for article content */
+#text-container {
+  width: 300px;
+  margin: auto;
+  /*min-height: 150px;*/
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  color: #2c3e50;
+  font-size: 1rem;
+  line-height: 1.4;
+  margin-bottom: 40px;
+  white-space: pre-wrap; /* maintain line breaks */
+}
+
+.article-number {
+  font-weight: bold;
+  color: #007BFF; /* Change this to any color you like */
+  margin-right: 8px;
+}
+.count-number{
+  font-weight: bold;
+  color: #ff3300;
+}
+
+/* Countdown and message styles */
+p {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+#countdown {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #e74c3c;
+  margin: 10px 0;
+  display: none;
+  text-align: center;
+}
+
+
+#message {
+  font-weight: bold;
+  color: black;
+  margin: 10px 0;
+  text-align: center;
+}
+
+/* Controls container */
+#controls {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+/* Buttons styling */
+button {
+  padding: 10px 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  color: white;
+  background-color: #3498db;
+  box-shadow: 0 4px 6px rgba(52, 152, 219, 0.4);
+}
+
+button:hover {
+  background-color: #2980b9;
+}
+
+button:active {
+  background-color: #1f6391;
+}
+
+button:disabled {
+  background-color: #95a5a6;
+  cursor: not-allowed;
+  box-shadow: none;
+}
