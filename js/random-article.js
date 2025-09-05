@@ -252,16 +252,11 @@ const articleTexts = {
   }
 
   function animateInNumber(article) {
-  // visible animated number
-  const elem = document.createElement('div');
-  elem.className = 'number';
-  elem.textContent = `Article ${article}`;
-  numberContainer.appendChild(elem);
-
-  // update hidden SR-only text so aria-live announces it
-  document.getElementById('article-live-text').textContent = `Article ${article}`;
-}
-
+    const elem = document.createElement('div');
+    elem.className = 'number';
+    elem.textContent = `Article ${article}`;
+    numberContainer.appendChild(elem);
+  }
 
   function showText(article) {
     textContainer.innerHTML =
