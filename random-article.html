@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="stylesheet" href="css/random-article.css" />
-<title>Indian Constitution Articles Randomizer</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="css/random-article.css" />
+  <title>Indian Constitution Articles Randomizer</title>
 </head>
 <body>
   <div class="card">
     <h1>Guess Articles</h1>
 
-    <div id="number-container"></div>
+    <!-- Accessible live region -->
+    <div id="number-container" aria-live="polite">
+      <span id="article-live-text" class="sr-only"></span>
+    </div>
+
+    <!-- <div id="number-container"></div> -->
     <span id="countdown" class="article-number">30</span>
     <p id="message">Answer will come in <span class="article-number">15</span> sec</p>
 
