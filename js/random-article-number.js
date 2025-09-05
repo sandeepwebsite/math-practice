@@ -250,9 +250,11 @@ function getNearbyOptions(correct) {
   const correctNum = parseInt(numMatch[0], 10);
 
   while (wrongOptions.length < 3) {
-    const offset = Math.floor(Math.random() * 9) - 4; // -4 to +4
+    const offset = Math.floor(Math.random() * 4) - 2; // -2 to +2
     let candidateNum = correctNum + offset;
-    if (candidateNum < 1) continue;
+
+    // Ensure candidateNum is within valid range
+    if (candidateNum < 1 || candidateNum > articleList.length) continue;
 
     const candidate = candidateNum.toString();
 
@@ -384,3 +386,4 @@ quitBtn.onclick = () => {
 // Start the game
 prepareQuestions();
 loadQuestion();
+
