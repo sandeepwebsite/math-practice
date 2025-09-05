@@ -13,8 +13,8 @@ body {
   margin: 0;
   padding: 0;
   display: flex;
-  justify-content: center;   /* horizontal center */
-  align-items: center;       /* vertical center */
+  justify-content: center;   /* center horizontally */
+  align-items: center;       /* center vertically */
   min-height: 100vh;         /* full viewport height */
 }
 
@@ -29,11 +29,10 @@ body {
   width: 100%;
   height: 95vh;              /* 95% of screen height */
   text-align: center;
-  display: flex;             /* makes inner content flexible */
-  flex-direction: column;    /* stack content vertically */
-  justify-content: center;   /* center content vertically inside card */
+  display: flex;
+  flex-direction: column;    /* stack child elements vertically */
+  justify-content: center;   /* center contents inside card */
 }
-
 
 /* Title */
 h1 {
@@ -46,7 +45,7 @@ h1 {
 /* Container for article number */
 #number-container {
   position: relative;
-  height: 60px; /* enough height for number animation */
+  height: 60px;
   width: 300px;
   margin: auto;
   overflow: hidden;
@@ -67,7 +66,6 @@ h1 {
   animation: dropIn 0.7s forwards;
 }
 
-/* Animate article number dropping in */
 @keyframes dropIn {
   from {
     opacity: 0;
@@ -79,7 +77,6 @@ h1 {
   }
 }
 
-/* Animate article number moving up and fading out */
 .animate-out {
   animation: moveUpOut 0.7s forwards;
 }
@@ -95,11 +92,10 @@ h1 {
   }
 }
 
-/* Text container for article content */
+/* Text container */
 #text-container {
   width: 300px;
   margin: auto;
-  /*min-height: 150px;*/
   padding: 20px;
   background: #ffffff;
   border-radius: 8px;
@@ -108,35 +104,28 @@ h1 {
   font-size: 1rem;
   line-height: 1.4;
   margin-bottom: 40px;
-  white-space: pre-wrap; /* maintain line breaks */
+  white-space: pre-wrap;
 }
 
 .article-number {
   font-weight: bold;
-  color: #007BFF; /* Change this to any color you like */
+  color: #007BFF;
   margin-right: 8px;
 }
-.count-number{
+.count-number {
   font-weight: bold;
   color: #ff3300;
 }
 
-/* Countdown and message styles */
-p {
-  font-size: 1.1rem;
-  margin-bottom: 10px;
-  color: #555;
-}
-
+/* Countdown + message */
 #countdown {
   font-size: 3rem;
   font-weight: bold;
   color: #e74c3c;
   margin: 10px 0;
-  display: none;
+  display: none; /* hidden until JS shows it */
   text-align: center;
 }
-
 
 #message {
   font-weight: bold;
@@ -145,14 +134,24 @@ p {
   text-align: center;
 }
 
-/* Controls container */
+/* Controls */
 #controls {
   display: flex;
   justify-content: center;
   gap: 15px;
 }
+/* Screen-reader only text */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
 
-/* Buttons styling */
 button {
   padding: 10px 25px;
   font-size: 1rem;
