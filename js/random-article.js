@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-
   const numberContainer = document.getElementById('number-container');
   const textContainer = document.getElementById('text-container');
   const countdownDisplay = document.getElementById('countdown');
@@ -7,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const resetBtn = document.getElementById('reset-btn');
   const quitBtn = document.getElementById('quit-btn');
 
+  // --- Article Numbers ---
   const articleList = [
   '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11',
   '12', '13', '14', '15', '16', '17', '18', '19',
@@ -219,17 +219,15 @@ const articleTexts = {
   '395': 'Short title, commencement, and repeals related to Indian Independence/Government of India Acts.'
 };
 
-
-  const phaseDurationMs = 15000;  // 15 seconds in milliseconds
-  const phaseDurationSec = phaseDurationMs / 1000; // 15 seconds as seconds
+  // --- Timers ---
+  const phaseDurationMs = 15000; // 15 sec
+  const phaseDurationSec = phaseDurationMs / 1000;
 
   let articleQueue = [];
-  let countdownInterval = null;
-  let messageInterval = null;
-  let phaseTimeout = null;
-  let cycleTimeout = null;
+  let countdownInterval, messageInterval, phaseTimeout, cycleTimeout;
   let isRunning = true;
 
+  // Shuffle articles
   function shuffleArticles() {
     articleQueue = [...articleList];
     for (let i = articleQueue.length - 1; i > 0; i--) {
@@ -254,16 +252,22 @@ const articleTexts = {
   }
 
   function animateInNumber(article) {
-    const elem = document.createElement('div');
-    elem.className = 'number';
-    elem.textContent = `Article ${article}`;
-    numberContainer.appendChild(elem);
-  }
+  // visible animated number
+  const elem = document.createElement('div');
+  elem.className = 'number';
+  elem.textContent = `Article ${article}`;
+  numberContainer.appendChild(elem);
 
-  function showText(article) {
-  textContainer.innerHTML = `<span class="article-number">Article ${article}→</span>${articleTexts[article] || 'Text not available.'}`;
+  // update hidden SR-only text so aria-live announces it
+  document.getElementById('article-live-text').textContent = `Article ${article}`;
 }
 
+
+  function showText(article) {
+    textContainer.innerHTML =
+      `<span class="article-number">Article ${article} → </span>` +
+      (articleTexts[article] || 'Text not available.');
+  }
 
   function startCountdown(seconds) {
     let timeLeft = seconds;
@@ -278,21 +282,20 @@ const articleTexts = {
   }
 
   function startMessageCountdown(duration, prefixText) {
-  let timeLeft = duration;
-  messageDisplay.innerHTML = `${prefixText} <span class="count-number">${timeLeft}</span> sec`;
+    let timeLeft = duration;
+    messageDisplay.innerHTML =
+      `${prefixText} <span class="count-number">${timeLeft}</span> sec`;
 
-  clearInterval(messageInterval);
-  messageInterval = setInterval(() => {
-    timeLeft--;
-    if (timeLeft >= 0) {
-      messageDisplay.innerHTML = `${prefixText} <span class="count-number">${timeLeft}</span> sec`;
-    }
-    if (timeLeft <= 0) {
-      clearInterval(messageInterval);
-    }
-  }, 1000);
-}
-
+    clearInterval(messageInterval);
+    messageInterval = setInterval(() => {
+      timeLeft--;
+      if (timeLeft >= 0) {
+        messageDisplay.innerHTML =
+          `${prefixText} <span class="count-number">${timeLeft}</span> sec`;
+      }
+      if (timeLeft <= 0) clearInterval(messageInterval);
+    }, 1000);
+  }
 
   async function updateArticle() {
     if (!isRunning) return;
@@ -306,23 +309,19 @@ const articleTexts = {
     const article = getNextArticle();
     animateInNumber(article);
 
-    // PHASE 1: First 15 seconds - no text shown
+    // Phase 1: 15 sec (no text)
     startCountdown(phaseDurationSec);
     startMessageCountdown(phaseDurationSec, 'Answer will come in');
 
     phaseTimeout = setTimeout(() => {
-      // PHASE 2: Show text and start next 15 sec countdown
+      // Phase 2: show text + 15 sec
       textContainer.style.display = 'block';
       showText(article);
 
       startCountdown(phaseDurationSec);
       startMessageCountdown(phaseDurationSec, 'Next article in');
 
-      // After next 15 sec, start next cycle
-      cycleTimeout = setTimeout(() => {
-        updateArticle();
-      }, phaseDurationMs);
-
+      cycleTimeout = setTimeout(updateArticle, phaseDurationMs);
     }, phaseDurationMs);
   }
 
@@ -353,7 +352,7 @@ const articleTexts = {
   resetBtn.addEventListener('click', resetApp);
   quitBtn.addEventListener('click', quitApp);
 
+  // --- Start ---
   shuffleArticles();
   updateArticle();
-
 });
