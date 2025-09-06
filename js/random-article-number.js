@@ -244,26 +244,10 @@ function prepareQuestions() {
 
 function getNearbyOptions(correct) {
   const wrongOptions = [];
-  const numMatch = correct.match(/\d+/);
-  if (!numMatch) return wrongOptions;
-
-  const correctNum = parseInt(numMatch[0], 10);
-
   while (wrongOptions.length < 3) {
-    const offset = Math.floor(Math.random() * 4) - 2; // -2 to +2
-    let candidateNum = correctNum + offset;
-
-    // Ensure candidateNum is within valid range
-    if (candidateNum < 1 || candidateNum > articleList.length) continue;
-
-    const candidate = candidateNum.toString();
-
-    if (
-      articleList.includes(candidate) &&
-      candidate !== correct &&
-      !wrongOptions.includes(candidate)
-    ) {
-      wrongOptions.push(candidate);
+    const rand = articleList[Math.floor(Math.random() * articleList.length)];
+    if (rand !== correct && !wrongOptions.includes(rand)) {
+      wrongOptions.push(rand);
     }
   }
   return wrongOptions;
@@ -283,17 +267,9 @@ function loadQuestion() {
   document.querySelectorAll(".option").forEach(opt => opt.remove());
 
   const correct = current.article;
-
-  // Get wrong options near correct
+  
+  // Get wrong options
   let wrongOptions = getNearbyOptions(correct);
-
-  // Fallback if not enough
-  while (wrongOptions.length < 3) {
-    const rand = articleList[Math.floor(Math.random() * articleList.length)];
-    if (rand !== correct && !wrongOptions.includes(rand)) {
-      wrongOptions.push(rand);
-    }
-  }
 
   const options = shuffle([correct, ...wrongOptions]);
 
@@ -386,4 +362,3 @@ quitBtn.onclick = () => {
 // Start the game
 prepareQuestions();
 loadQuestion();
-
