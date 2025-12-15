@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Image Resize & KB Match</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+:root{
+    --primary:#6366f1;
+    --secondary:#334155;
+    --bg:#020617;
+    --card:rgba(255,255,255,.12);
+}
+*{box-sizing:border-box;font-family:"Segoe UI",sans-serif}
+
+body{
+    margin:0;
+    min-height:100vh;
+    background:linear-gradient(135deg,#020617,#0f172a);
+    display:flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items:center;
+    color:#fff;
+}
+
+/* Header styles */
+  header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    /*background: linear-gradient(90deg, #4e54c8, #8f94fb);*/
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Added box shadow */
+}
+
+
+  /* Logo and brand */
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .brand img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .brand h1 {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  /* Navigation */
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  nav a {
+    text-decoration: none;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background 0.3s;
+  }
+
+  nav a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  /* Responsive design */
+  @media (max-width: 600px) {
+    header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    nav {
+      width: 100%;
+      justify-content: space-around;
+    }
+
+    .brand h1 {
+      font-size: 1.2rem;
+    }
+  }
+
+
+.container{
+    width:92%;
+    max-width:720px;
+    background:var(--card);
+    backdrop-filter:blur(20px);
+    border-radius:20px;
+    padding:22px;
+    box-shadow:0 25px 50px rgba(0,0,0,.4);
+    text-align:center;
+}
+
+/* DROP ZONE */
+.drop-zone{
+    border:2px dashed rgba(255,255,255,.4);
+    border-radius:15px;
+    padding:22px;
+    cursor:pointer;
+    transition:.3s;
+}
+.drop-zone.dragover{
+    background:rgba(99,102,241,.15);
+    border-color:var(--primary);
+}
+input[type=file]{display:none}
+
+/* IMAGE BOX */
+.image-box{
+    margin:18px 0;
+    display:none;
+    position:relative;
+    justify-content:center;
+    align-items:center;
+    min-height:200px;
+}
+
+/* PREVIEW */
+.image-box img{
+    max-width:180px;
+    max-height:180px;
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,.2);
+}
+
+/* LOADER */
+.loader{
+    position:absolute;
+    width:46px;
+    height:46px;
+    border-radius:50%;
+    border:4px solid rgba(255,255,255,.3);
+    border-top-color:var(--primary);
+    animation:spin 1s linear infinite;
+    display:none;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* PROGRESS */
+.progress-wrap{
+    width:100%;
+    background:rgba(255,255,255,.15);
+    border-radius:8px;
+    overflow:hidden;
+    margin:10px 0;
+    display:none;
+}
+.progress-bar{
+    height:8px;
+    width:0%;
+    background:var(--primary);
+}
+
+/* TEXT */
+.size-info{font-size:.85rem;opacity:.85;margin-bottom:12px}
+
+/* CONTROLS */
+.controls{display:grid;gap:14px;text-align:left}
+.row{display:flex;gap:10px}
+.row input{flex:1}
+input[type=number]{
+    width:100%;
+    padding:9px;
+    border-radius:6px;
+    border:none
+}
+
+.mode-buttons{display:flex;gap:10px}
+.mode-buttons button{
+    flex:1;
+    padding:10px;
+    border:none;
+    border-radius:8px;
+    background:var(--secondary);
+    color:#fff;
+    cursor:pointer
+}
+.mode-buttons button.active{background:var(--primary)}
+
+.buttons{
+    display:flex;
+    gap:10px;
+    justify-content:center;
+    flex-wrap:wrap
+}
+.buttons button{
+    background:var(--primary);
+    border:none;
+    padding:10px 18px;
+    color:white;
+    border-radius:8px;
+    cursor:pointer
+}
+.buttons .secondary{background:var(--secondary)}
+button:disabled{opacity:.5;cursor:not-allowed}
+
+.footer{
+  width:100%;
+  padding:14px 10px;
+  text-align:center;
+  /*background:linear-gradient(135deg,#020617,#0f172a);*/
+  color:#cbd5f5;
+  font-size:14px;
+}
+
+
+/*footer section*/
+
+.footer p{
+  margin:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  flex-wrap:wrap;
+}
+
+.heart{
+  cursor:pointer;
+  color:#ef4444;
+  font-size:18px;
+  user-select:none;
+}
+
+/* Flying heart */
+.flying-heart{
+  position:fixed;
+  font-size:18px;
+  color:#ef4444;
+  pointer-events:none;
+  animation:fly 1.4s ease-out forwards;
+  text-shadow:0 0 10px rgba(239,68,68,.8);
+}
+
+@keyframes fly{
+  0%{
+    transform:translate(0,0) scale(1);
+    opacity:1;
+  }
+  100%{
+    transform:translate(var(--x), var(--y)) scale(.4);
+    opacity:0;
+  }
+}
+
+
+/* Cyberpunk neon text */
+.cyberpunk{
+  position:relative;
+  color:#22d3ee;
+  font-weight:600;
+  text-decoration:none;
+  transition:color .2s ease;
+}
+
+/* Flicker effect only on hover */
+.cyberpunk:hover{
+  animation:flicker 1.8s linear infinite;
+  text-shadow:
+    0 0 4px #22d3ee,
+    0 0 10px #22d3ee,
+    0 0 20px #06b6d4,
+    0 0 40px rgba(6,182,212,.8);
+}
+
+/* Neon underline */
+.cyberpunk::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-3px;
+  width:0%;
+  height:2px;
+  background:#22d3ee;
+  box-shadow:0 0 10px #22d3ee;
+  transition:width .25s ease;
+}
+
+.cyberpunk:hover::after{
+  width:100%;
+}
+
+/* Cyberpunk flicker animation */
+@keyframes flicker{
+  0%,19%,22%,62%,64%,70%,100%{
+    opacity:1;
+  }
+  20%,21%,63%,65%,69%{
+    opacity:.35;
+  }
+}
+
+
+</style>
+</head>
+
+<body>
+
+    <header>
+  <div class="brand">
+    <img src="image/resize.png" alt="Logo">
+    <h1>Resizer</h1>
+  </div>
+  <nav>
+    <a href="index.html">Home</a>
+  </nav>
+</header>
+<div class="container">
+
+<h2>Image Resize & KB Match</h2>
+
+<div class="drop-zone" id="dropZone">
+    <p>Drag & Drop Image<br>or Tap to Upload</p>
+    <input type="file" id="imageInput" accept="image/*">
+</div>
+
+<div class="image-box" id="imageBox">
+    <img id="previewImage">
+    <div class="loader" id="loader"></div>
+</div>
+
+<div class="progress-wrap" id="progressWrap">
+    <div class="progress-bar" id="progressBar"></div>
+</div>
+
+<div class="size-info">
+    Original: <span id="originalSize">–</span> |
+    Final: <span id="finalSize">–</span>
+</div>
+
+<div class="controls">
+<label>Exact Size (px)</label>
+<div class="row">
+<input type="number" id="widthInput" placeholder="Width">
+<input type="number" id="heightInput" placeholder="Height">
+</div>
+
+<label>Target Size (KB)</label>
+<input type="number" id="kbInput" placeholder="e.g. 200">
+
+<div class="mode-buttons">
+<button id="increaseBtn" class="active">Increase KB</button>
+<button id="reduceBtn">Reduce KB</button>
+</div>
+
+<div class="buttons">
+<button id="resizeBtn">Resize</button>
+<button class="secondary" onclick="resetAll()">Reset</button>
+<button onclick="downloadImage()">Download</button>
+</div>
+</div>
+
+</div>
+
+<footer class="footer">
+  <p>
+    Made with
+    <span class="heart burst-heart" onclick="heartBurst(event)">❤</span>
+    by
+    <a href="https://www.instagram.com/sandeep_kumar_mohanta/"
+       target="_blank"
+       class="brand cyberpunk">
+       Sandeep
+    </a>
+  </p>
+</footer>
+
+<script>
+    function heartBurst(e){
+  const count = 16; // number of hearts
+  const x = e.clientX;
+  const y = e.clientY;
+
+  for(let i=0;i<count;i++){
+    const heart = document.createElement("span");
+    heart.className = "flying-heart";
+    heart.innerHTML = "❤";
+
+    const offsetX = (Math.random() - 0.5) * 200 + "px";
+    const offsetY = (Math.random() - 0.8) * 200 + "px";
+
+    heart.style.left = x + "px";
+    heart.style.top = y + "px";
+    heart.style.setProperty("--x", offsetX);
+    heart.style.setProperty("--y", offsetY);
+
+    document.body.appendChild(heart);
+
+    setTimeout(()=>heart.remove(),1400);
+  }
+}
+
+</script>
+
+<script>
+const imageInput = document.getElementById("imageInput");
+const dropZone = document.getElementById("dropZone");
+const imageBox = document.getElementById("imageBox");
+const previewImage = document.getElementById("previewImage");
+const loader = document.getElementById("loader");
+const progressWrap = document.getElementById("progressWrap");
+const progressBar = document.getElementById("progressBar");
+
+const widthInput = document.getElementById("widthInput");
+const heightInput = document.getElementById("heightInput");
+const kbInput = document.getElementById("kbInput");
+const originalSizeEl = document.getElementById("originalSize");
+const finalSizeEl = document.getElementById("finalSize");
+
+const increaseBtn = document.getElementById("increaseBtn");
+const reduceBtn = document.getElementById("reduceBtn");
+
+let originalImage = new Image();
+let originalFile = null;
+let finalDataURL = null;
+let mode = "increase";
+
+/* MODE */
+increaseBtn.onclick = () => setMode("increase");
+reduceBtn.onclick = () => setMode("reduce");
+function setMode(m){
+    mode = m;
+    increaseBtn.classList.toggle("active", m==="increase");
+    reduceBtn.classList.toggle("active", m==="reduce");
+}
+
+/* DISABLE UI */
+function setDisabled(state){
+    document.querySelectorAll("button,input").forEach(el=>{
+        if(el.type !== "file") el.disabled = state;
+    });
+}
+
+/* HANDLE FILE */
+function handleFile(file){
+    if(!file || !file.type.startsWith("image")) return;
+
+    originalFile = file;
+    originalSizeEl.textContent = (file.size/1024).toFixed(1)+" KB";
+    finalSizeEl.textContent = "–";
+
+    const reader = new FileReader();
+    reader.onload = ()=>{
+        originalImage.onload = ()=>{
+            previewImage.src = originalImage.src;
+            widthInput.value = originalImage.width;
+            heightInput.value = originalImage.height;
+            imageBox.style.display = "flex";
+        };
+        originalImage.src = reader.result;
+    };
+    reader.readAsDataURL(file);
+}
+
+/* DROP */
+dropZone.onclick = ()=>imageInput.click();
+imageInput.onchange = ()=>handleFile(imageInput.files[0]);
+dropZone.ondragover = e=>{e.preventDefault();dropZone.classList.add("dragover")};
+dropZone.ondragleave = ()=>dropZone.classList.remove("dragover");
+dropZone.ondrop = e=>{
+    e.preventDefault();
+    dropZone.classList.remove("dragover");
+    handleFile(e.dataTransfer.files[0]);
+};
+
+/* RESIZE */
+document.getElementById("resizeBtn").onclick = async ()=>{
+    if(!originalImage.src) return alert("Upload image first");
+
+    setDisabled(true);
+    loader.style.display = "block";
+    progressWrap.style.display = "block";
+    progressBar.style.width = "0%";
+
+    const canvas = document.createElement("canvas");
+    canvas.width = widthInput.value;
+    canvas.height = heightInput.value;
+    const ctx = canvas.getContext("2d");
+    ctx.drawImage(originalImage,0,0,canvas.width,canvas.height);
+
+    const targetKB = parseFloat(kbInput.value);
+    const type = originalFile.type;
+    let low = 0.05, high = 1, best = null;
+
+    for(let i=0;i<30;i++){
+        const q = (low+high)/2;
+        const data = canvas.toDataURL(type==="image/png"?"image/png":type, q);
+        const sizeKB = ((data.length*3)/4)/1024;
+        progressBar.style.width = ((i+1)/30*100)+"%";
+        finalSizeEl.textContent = sizeKB.toFixed(1)+" KB";
+        best = data;
+
+        if(!targetKB || Math.abs(sizeKB-targetKB)<=1) break;
+        if(mode==="reduce"){
+            sizeKB>targetKB ? high=q : low=q;
+        }else{
+            sizeKB<targetKB ? low=q : high=q;
+        }
+        await new Promise(r=>setTimeout(r,20));
+    }
+
+    finalDataURL = best;
+    loader.style.display = "none";
+    setDisabled(false);
+};
+
+/* DOWNLOAD */
+function downloadImage(){
+    if(!finalDataURL) return alert("Resize first");
+    const name = originalFile.name.replace(/\.[^/.]+$/, "");
+    const ext = originalFile.type.split("/")[1];
+    const a = document.createElement("a");
+    a.href = finalDataURL;
+    a.download = `${name}-resized.${ext}`;
+    a.click();
+}
+
+/* RESET */
+function resetAll(){
+    previewImage.src = "";
+    imageBox.style.display = "none";
+    loader.style.display = "none";
+    progressWrap.style.display = "none";
+    progressBar.style.width = "0%";
+    widthInput.value = "";
+    heightInput.value = "";
+    kbInput.value = "";
+    finalDataURL = null;
+    originalFile = null;
+    originalSizeEl.textContent = "–";
+    finalSizeEl.textContent = "–";
+    setMode("increase");
+}
+</script>
+</body>
+</html>
