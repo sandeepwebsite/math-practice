@@ -34,10 +34,10 @@ body{
     padding: 10px 20px;
     /*background: linear-gradient(90deg, #4e54c8, #8f94fb);*/
     color: white;
-    position: sticky;
+    position: relative;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Added box shadow */
+    box-shadow: 0 0 20px 5px rgba(255, 255, 255, 0.5); /* Added box shadow */
 }
 
 
@@ -80,14 +80,17 @@ body{
   /* Responsive design */
   @media (max-width: 600px) {
     header {
-      flex-direction: column;
-      align-items: flex-start;
+      /*flex-direction: column;*/
+      align-items: center;
       gap: 10px;
     }
 
     nav {
       width: 100%;
       justify-content: space-around;
+      display: flex;
+      float: right;
+      left: 100px;
     }
 
     .brand h1 {
@@ -320,7 +323,7 @@ button:disabled{opacity:.5;cursor:not-allowed}
   <nav>
     <a href="index.html">Home</a>
   </nav>
-</header>
+</header><br>
 <div class="container">
 
 <h2>Image Resize & KB Match</h2>
